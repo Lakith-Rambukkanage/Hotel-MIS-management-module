@@ -153,5 +153,42 @@ class Panel {
                               ),
                               ];
     return container;
-  } 
+  }
+  static List<Widget> roomStatus(){
+    List<Widget> room = [Container(
+      height: 170.0,
+      width: 170.0,
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children : <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(2.0),
+              child: Text('Rooms', style: TextStyle(color: Colors.white, fontSize: 18.0)),
+            ),
+            Container(width: 100.0,height: 30.0, color: Colors.white, child: Icon(Icons.offline_pin),),
+            Container(width: 100.0,height: 40.0, color: Colors.cyan, child: Icon(Icons.settings),),
+            Container(width: 100.0,height: 50.0, color: Colors.blue, child: Icon(Icons.airline_seat_individual_suite),),
+            ],
+        ),
+      ),
+    )];
+    return room;
+  }
+  static List<Widget> mapIcon(){
+    List<Widget> map = [Container(
+                          height: 170.0,
+                          width: 170.0,
+                          child: CircleAvatar(
+                                    backgroundImage: new AssetImage('blueprint.jpg'),
+                                    backgroundColor: Colors.transparent,
+                                    maxRadius: 100.0,
+                                    minRadius: 90.0,
+                                    child: Text('Sections'),
+                              ),
+                        ),
+                        ];
+    return map;
+  }
 }

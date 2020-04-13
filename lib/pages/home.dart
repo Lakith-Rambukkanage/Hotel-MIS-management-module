@@ -32,9 +32,9 @@ class Home extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
-                    Panel.panel([Container(height: 170.0,width: 170,)]),
+                    Panel.panel(Panel.roomStatus()),
                     SizedBox(width: 10.0,),
-                    Panel.panel([Container(height: 170.0,width: 170,)]),
+                    Panel.panel(Panel.mapIcon()),
                   ],
                 ),
                 SizedBox(height: 20.0,),
