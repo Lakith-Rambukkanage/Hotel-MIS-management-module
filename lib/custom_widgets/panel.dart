@@ -180,13 +180,21 @@ class Panel {
     List<Widget> map = [Container(
                           height: 170.0,
                           width: 170.0,
-                          child: CircleAvatar(
-                                    backgroundImage: new AssetImage('blueprint.jpg'),
-                                    backgroundColor: Colors.transparent,
-                                    maxRadius: 100.0,
-                                    minRadius: 90.0,
-                                    child: Text('Sections'),
+                          child:  Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text('All Sections', style: TextStyle(color: Colors.white, fontSize: 18.0)),
                               ),
+                              Container(
+                                height: 80.0,
+                                width: 80.0,
+                                decoration: new BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(30.0)),
+                                child: Icon(Icons.map,color: Colors.grey[900],size: 70.0,)),
+                              SizedBox(height: 15.0,)
+                            ],
+                          ),
                         ),
                         ];
     return map;

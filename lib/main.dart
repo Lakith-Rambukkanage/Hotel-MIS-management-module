@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_learn/pages/section.dart';
 import 'pages/home.dart';
 import 'pages/loading.dart';
 import 'pages/login.dart';
@@ -6,7 +7,7 @@ import 'pages/test.dart';
 
 void main() => runApp(MaterialApp(
   //home: Home(),
-  home: Home(),
+  home: Section(),
   routes: {
     //'/' : (context) => Loading(),
     '/home' : (context) => Home(),
