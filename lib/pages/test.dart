@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/custom_widgets/donut.dart';
-import 'package:flutter_learn/custom_widgets/gauge.dart';
-import 'package:flutter_learn/custom_widgets/panel.dart';
 
 class Test extends StatelessWidget {
   @override

@@ -1,108 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_learn/custom_widgets/panel.dart';
+import 'package:flutter_learn/custom_widgets/mapicon.dart';
+import 'package:flutter_learn/custom_widgets/roompanel.dart';
+import 'package:flutter_learn/custom_widgets/screen.dart';
+import 'package:flutter_learn/custom_widgets/staffpanel.dart';
+import 'package:flutter_learn/custom_widgets/todaypanel.dart';
 
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text('Dashboard'),
-          centerTitle: true,
-          backgroundColor: Colors.grey[850]
-        ),
-        backgroundColor: Colors.grey[900],
-
-        drawer: Drawer(
-        // Add a ListView to the drawer. This ensures the user can scroll
-        // through the options in the drawer if there isn't enough vertical
-        // space to fit everything.
-            child: ListView(
-              // Important: Remove any padding from the ListView.
-              padding: EdgeInsets.zero,
-              children: <Widget>[
-                DrawerHeader(
-                  child: Text('Quick Access', style: TextStyle(color: Colors.white, fontSize: 18.0)),
-                  decoration: BoxDecoration(
-                    color: Colors.grey[850],
-                  ),
-                ),
-                ListTile(
-                  title: Text('Calendar & Events'),
-                  trailing: Icon(Icons.calendar_today),
-                  onTap: () {
-                    // Update the state of the app
-                    // ...
-                    // Then close the drawer
-                    Navigator.pop(context);
-                  },
-                ),
-                ListTile(
-                  title: Text('Staff'),
-                  trailing: Icon(Icons.people),
-                  onTap: () {
-                    // Update the state of the app
-                    // ...
-                    // Then close the drawer
-                    Navigator.pop(context);
-                  },
-                ),
-                ListTile(
-                  title: Text('Sections'),
-                  trailing: Icon(Icons.map),
-                  onTap: () {
-                    // Update the state of the app
-                    // ...
-                    // Then close the drawer
-                    Navigator.pop(context);
-                  },
-                ),
-                ListTile(
-                  title: Text('Restaurent'),
-                  trailing: Icon(Icons.restaurant),
-                  onTap: () {
-                    // Update the state of the app
-                    // ...
-                    // Then close the drawer
-                    Navigator.pop(context);
-                  },
-                ),
-              ],
-            ),
-          ),
-
-        body: Container(
-        height: 800.0,
-        width: 600.0,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/background2.jpg"),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child : SingleChildScrollView(
-                  child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              children: <Widget>[
-                Panel.panel(Panel.todayPanel()),
+    return ReusableScreen(
+      propic: 'dummypropic.png',
+      username: 'Thomas Shelby',
+      jobtitle: 'Manager',
+      appBarTitle: 'Dashboard',
+      content: <Widget>[
+                TodayPanel(),
                 SizedBox(height: 20.0,),
-                Panel.panel(Panel.staffPanel()),
+                StaffPanel(
+                  staff: 'Staff',
+                  active : 100,
+                  leave : 40,
+                  awol : 2,
+                ),
                 SizedBox(height: 20.0,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
-                    Panel.panel(Panel.roomStatus()),
+                    RoomPanel(
+                    available: 50, 
+                    cleaning: 20,
+                    checked: 150,
+                    ),
                     SizedBox(width: 10.0,),
-                    Panel.panel(Panel.mapIcon()),
+                    MapIcon(),
                   ],
                 ),
                 SizedBox(height: 20.0,),
-                Panel.panel([Container(height: 120.0,)]),
-              ],
-            ),
-          ),
-        ),
-      )
+                ]
       );
   }
 }
