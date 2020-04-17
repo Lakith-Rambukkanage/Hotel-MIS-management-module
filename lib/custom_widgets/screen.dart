@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_learn/pages/login.dart';
+import 'package:flutter_learn/pages/profile.dart';
 
 class ReusableScreen extends StatelessWidget{
 
@@ -21,6 +23,7 @@ class ReusableScreen extends StatelessWidget{
     return Scaffold(
         appBar: AppBar(
           title: Text(appBarTitle),
+          actions: <Widget>[IconButton(icon: Icon(Icons.notifications), onPressed: () {},)],
           centerTitle: true,
           backgroundColor: Colors.grey[850]
         ),
@@ -35,24 +38,43 @@ class ReusableScreen extends StatelessWidget{
               padding: EdgeInsets.zero,
               children: <Widget>[
                 DrawerHeader(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: CircleAvatar(
-                          backgroundImage: AssetImage('assets/$propic'),
-                          radius: 35.0,
+                  child: GestureDetector(
+                    onTap: (){
+                      //profile
+                      Navigator.push(context,new MaterialPageRoute(
+                        builder: (context)=>
+                        new Profile())
+                        );
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: CircleAvatar(
+                            backgroundImage: AssetImage('assets/$propic'),
+                            radius: 35.0,
+                          ),
                         ),
-                      ),
-                      Text('$username', style: TextStyle(color: Colors.white, fontSize: 18.0)),
-                      Text('$jobtitle', style: TextStyle(color: Colors.cyan, fontSize: 18.0)),
-                    ],
+                        Text('$username', style: TextStyle(color: Colors.white, fontSize: 18.0)),
+                        Text('$jobtitle', style: TextStyle(color: Colors.cyan, fontSize: 18.0)),
+                      ],
+                    ),
                   ),
                   decoration: BoxDecoration(
                     color: Colors.grey[850],
                   ),
+                ),
+                ListTile(
+                  title: Text('Home'),
+                  trailing: Icon(Icons.home,color: Colors.cyan,),
+                  onTap: () {
+                    // Update the state of the app
+                    // ...
+                    // Then close the drawer
+                    Navigator.pushNamed(context,'/home');
+                  },
                 ),
                 ListTile(
                   title: Text('Calendar & Events'),
@@ -61,7 +83,7 @@ class ReusableScreen extends StatelessWidget{
                     // Update the state of the app
                     // ...
                     // Then close the drawer
-                    Navigator.pop(context);
+                    Navigator.pushNamed(context,'/calendar');
                   },
                 ),
                 ListTile(
@@ -71,7 +93,7 @@ class ReusableScreen extends StatelessWidget{
                     // Update the state of the app
                     // ...
                     // Then close the drawer
-                    Navigator.pop(context);
+                    Navigator.pushNamed(context,'/staff');
                   },
                 ),
                 ListTile(
@@ -81,7 +103,7 @@ class ReusableScreen extends StatelessWidget{
                     // Update the state of the app
                     // ...
                     // Then close the drawer
-                    Navigator.pop(context);
+                    Navigator.pushNamed(context,'/sections');
                   },
                 ),
                 ListTile(
@@ -91,7 +113,7 @@ class ReusableScreen extends StatelessWidget{
                     // Update the state of the app
                     // ...
                     // Then close the drawer
-                    Navigator.pop(context);
+                    Navigator.pushNamed(context,'/restaurant');
                   },
                 ),
                 ListTile(
@@ -102,7 +124,13 @@ class ReusableScreen extends StatelessWidget{
                     // Update the state of the app
                     // ...
                     // Then close the drawer
-                    Navigator.pop(context);
+                    Navigator.pushAndRemoveUntil(
+                    context,
+                    new MaterialPageRoute(
+                    builder: (context)=>
+                    new Login()),
+                    (r)=>false,
+                    );
                   },
                 ),
               ],
@@ -122,13 +150,13 @@ class ReusableScreen extends StatelessWidget{
                   child: Padding(
               padding: const EdgeInsets.all(25.0),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                //TODO : axis alignment affects, replace the children with child param
-                children: content,
-              ),
-            ),
-        ),
-      )
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      //TODO : axis alignment affects, replace the children with child param
+                      children: content,
+                    ),
+                  ),
+                ),
+          ),
       );
   }
 
