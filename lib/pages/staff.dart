@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_learn/custom_widgets/hometile.dart';
 import 'package:flutter_learn/custom_widgets/screen.dart';
 import 'package:flutter_learn/custom_widgets/staffpanel.dart';
+import 'package:flutter_learn/pages/management.dart';
+import 'package:flutter_learn/pages/staffprofile.dart';
 
 class Staff extends StatelessWidget {
   @override
@@ -12,8 +14,16 @@ class Staff extends StatelessWidget {
       jobtitle: 'Manager',
       appBarTitle: 'Staff',
       content: [
-        Container(
-          child: StaffPanel(active: 10, leave: 2, awol: 1, staff: 'Management'),
+        GestureDetector(
+          onTap: (){
+            Navigator.push(context,new MaterialPageRoute(
+              builder: (context)=>
+              new Management())
+              );
+          },
+          child: Container(
+            child: StaffPanel(active: 10, leave: 2, awol: 1, staff: 'Management'),
+          ),
         ),
         SizedBox(height: 10.0,),
         Container(
@@ -54,7 +64,18 @@ class Staff extends StatelessWidget {
               ],
             ),
           )
-        ])
+        ],),
+        SizedBox(height: 10.0),
+        GestureDetector(
+          child: HomeTile(children: [SizedBox(height: 100.0,)]),
+          onTap: (){
+            //staff profile test
+            Navigator.push(context,new MaterialPageRoute(
+              builder: (context)=>
+              new StaffProfile())
+              );
+          },
+          )
       ]
       );
   }

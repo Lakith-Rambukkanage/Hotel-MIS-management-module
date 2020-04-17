@@ -46,7 +46,7 @@ class EmployeedCard extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.all(10.0),
-                        child: CircleAvatar(backgroundImage: AssetImage('assets/dummypropic.png'),radius: 35.0,),
+                        child: CircleAvatar(backgroundImage: AssetImage('assets/$propic'),radius: 35.0,),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
