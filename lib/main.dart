@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_learn/pages/calendar.dart';
-import 'package:flutter_learn/pages/management.dart';
-import 'package:flutter_learn/pages/restaurant.dart';
-import 'package:flutter_learn/pages/section.dart';
-import 'package:flutter_learn/pages/staff.dart';
-import 'pages/home.dart';
-import 'pages/loading.dart';
-import 'pages/login.dart';
-import 'pages/test.dart';
+import 'package:flutter_learn/pages/authenticate/loading.dart';
+import 'package:flutter_learn/pages/authenticate/login.dart';
+import 'package:flutter_learn/pages/authenticate/test.dart';
+import 'package:flutter_learn/pages/home/calendar.dart';
+import 'package:flutter_learn/pages/home/home.dart';
+import 'package:flutter_learn/pages/home/management.dart';
+import 'package:flutter_learn/pages/home/restaurant.dart';
+import 'package:flutter_learn/pages/home/section.dart';
+import 'package:flutter_learn/pages/home/staff.dart';
+
 
 void main() => runApp(MaterialApp(
   home: Home(),

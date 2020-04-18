@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/custom_widgets/screen.dart';
 import 'package:flutter_learn/custom_widgets/sectiontile.dart';
-import 'package:flutter_learn/pages/restaurant.dart';
-import 'package:flutter_learn/pages/rooms.dart';
+import 'package:flutter_learn/pages/home/restaurant.dart';
+import 'package:flutter_learn/pages/home/rooms.dart';
 
 class Section extends StatelessWidget {
   @override

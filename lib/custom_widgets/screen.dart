@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_learn/pages/login.dart';
-import 'package:flutter_learn/pages/profile.dart';
+import 'package:flutter_learn/pages/authenticate/login.dart';
+import 'package:flutter_learn/pages/home/profile.dart';
 
 class ReusableScreen extends StatelessWidget{
 
