@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "590768249087",
+    "firebase_url": "https://hotel-mis.firebaseio.com",
+    "project_id": "hotel-mis",
+    "storage_bucket": "hotel-mis.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:590768249087:android:572f9df4a799a5d87054ca",
+        "android_client_info": {
+          "package_name": "com.example.flutter_learn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "590768249087-snrt529uri9bemne51pdf6ge2dkj5mdn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVhCNzYC_n0ubXJcs_YxhbgW_Zp0fb1Po"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "590768249087-snrt529uri9bemne51pdf6ge2dkj5mdn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
