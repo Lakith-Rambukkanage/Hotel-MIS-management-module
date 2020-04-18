@@ -8,11 +8,12 @@ import 'package:flutter_learn/pages/home/management.dart';
 import 'package:flutter_learn/pages/home/restaurant.dart';
 import 'package:flutter_learn/pages/home/section.dart';
 import 'package:flutter_learn/pages/home/staff.dart';
+import 'package:flutter_learn/pages/wrapper.dart';
 
 
 void main() => runApp(MaterialApp(
-  home: Home(),
-  initialRoute: '/home',
+  home: Wrapper(),
+  // initialRoute: '/home',
   routes: {
     //'/' : (context) => Loading(),
     '/home' : (context) => Home(),
