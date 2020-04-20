@@ -11,7 +11,7 @@ class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     
-    // final AuthService _authService = AuthService();
+    final AuthService _authService = AuthService();
 
     return Scaffold(
         backgroundColor: Colors.grey[900],
@@ -69,7 +69,7 @@ class _SignInState extends State<SignIn> {
               color: Colors.cyan.withOpacity(0.7),
               onPressed: () async {
                 print ('sign in clicked');
-                // dynamic result = await _authService.signInAnon();
+                dynamic result = await _authService.signInAnon();
               }
               ),
             Divider(height: 20.0,),
