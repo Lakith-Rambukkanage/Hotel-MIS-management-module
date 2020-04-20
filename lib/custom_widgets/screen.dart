@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_learn/pages/authenticate/login.dart';
+import 'package:flutter_learn/pages/authenticate/signin.dart';
 import 'package:flutter_learn/pages/home/profile.dart';
+import 'package:flutter_learn/services/auth.dart';
 
 class ReusableScreen extends StatelessWidget{
 
@@ -20,6 +21,10 @@ class ReusableScreen extends StatelessWidget{
   
   @override
   Widget build(BuildContext context) {
+
+    //instance to access authservice 
+
+    final AuthService _auth = AuthService();
     return Scaffold(
         appBar: AppBar(
           title: Text(appBarTitle),
@@ -120,17 +125,21 @@ class ReusableScreen extends StatelessWidget{
                   contentPadding: EdgeInsets.all(90.0),
                   title: Text('Log out'),
                   leading: Icon(Icons.computer, color: Colors.cyan,),
-                  onTap: () {
+                  onTap: () async{
                     // Update the state of the app
                     // ...
                     // Then close the drawer
-                    Navigator.pushAndRemoveUntil(
-                    context,
-                    new MaterialPageRoute(
-                    builder: (context)=>
-                    new Login()),
-                    (r)=>false,
-                    );
+                    Navigator.pop(context);
+                    Navigator.popUntil(context, ModalRoute.withName("/"));
+                    await _auth.SignOut();
+                    // Front end old code
+                    // Navigator.pushAndRemoveUntil(
+                    // context,
+                    // new MaterialPageRoute(
+                    // builder: (context)=>
+                    // new SignIn()),
+                    // (r)=>false,
+                    // );
                   },
                 ),
               ],
