@@ -4,8 +4,9 @@ import 'package:flutter_learn/custom_widgets/roompanel.dart';
 import 'package:flutter_learn/custom_widgets/screen.dart';
 import 'package:flutter_learn/custom_widgets/staffpanel.dart';
 import 'package:flutter_learn/custom_widgets/todaypanel.dart';
+import 'package:flutter_learn/pages/home/calendar.dart';
 import 'rooms.dart';
-import 'section.dart';
+import 'viewsections.dart';
 import 'staff.dart';
 
 class Home extends StatelessWidget {
@@ -17,7 +18,14 @@ class Home extends StatelessWidget {
       jobtitle: 'Manager',
       appBarTitle: 'Dashboard',
       content: <Widget>[
-                TodayPanel(),
+                GestureDetector(
+                  onTap: (){
+                    Navigator.push(context,new MaterialPageRoute(
+                    builder: (context)=>
+                    new Calendar())
+                    );
+                  },
+                  child: TodayPanel()),
                 SizedBox(height: 20.0,),
                 GestureDetector(
                   onTap: (){
@@ -55,7 +63,7 @@ class Home extends StatelessWidget {
                       onTap: (){
                         Navigator.push(context,new MaterialPageRoute(
                         builder: (context)=>
-                        new Section())
+                        new Sections())
                         );
                       },
                       child: MapIcon()),

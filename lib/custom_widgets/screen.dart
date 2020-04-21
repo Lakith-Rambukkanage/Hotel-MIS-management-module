@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_learn/pages/authenticate/signin.dart';
+import 'package:flutter_learn/pages/home/notificationpanel.dart';
 import 'package:flutter_learn/pages/home/profile.dart';
 import 'package:flutter_learn/services/auth.dart';
 
@@ -28,7 +28,16 @@ class ReusableScreen extends StatelessWidget{
     return Scaffold(
         appBar: AppBar(
           title: Text(appBarTitle),
-          actions: <Widget>[IconButton(icon: Icon(Icons.notifications), onPressed: () {},)],
+          actions: <Widget>[
+            IconButton(icon: Icon(Icons.notifications), 
+            onPressed: () {
+              Navigator.push(context,new MaterialPageRoute(
+                    builder: (context)=>
+                    new NotificationPanel())
+                    );
+            }
+            ,)
+            ],
           centerTitle: true,
           backgroundColor: Colors.grey[850]
         ),
@@ -131,7 +140,7 @@ class ReusableScreen extends StatelessWidget{
                     // Then close the drawer
                     Navigator.pop(context);
                     Navigator.popUntil(context, ModalRoute.withName("/"));
-                    await _auth.SignOut();
+                    await _auth.signOut();
                     // Front end old code
                     // Navigator.pushAndRemoveUntil(
                     // context,

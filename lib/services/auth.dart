@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_learn/models/user.dart';
-import 'package:flutter_learn/pages/authenticate/signin.dart';
 
 class AuthService{
 
@@ -37,7 +36,7 @@ class AuthService{
   //sig up with email and password
 
   //signout
-  Future SignOut () async{
+  Future signOut () async{
     try {
       return await _auth.signOut();
     } catch (e) {

@@ -4,7 +4,7 @@ import 'package:flutter_learn/custom_widgets/sectiontile.dart';
 import 'package:flutter_learn/pages/home/restaurant.dart';
 import 'package:flutter_learn/pages/home/rooms.dart';
 
-class Section extends StatelessWidget {
+class Sections extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ReusableScreen(
@@ -16,7 +16,31 @@ class Section extends StatelessWidget {
                   GestureDetector(
                     child: SectionTile(
                       image : 'room.png',
-                      name : 'Rooms'
+                      name : 'East Wing'
+                    ),
+                    onTap: (){
+                      Navigator.push(context,new MaterialPageRoute(
+                      builder: (context)=>
+                      new Rooms())
+                      );
+                    },
+                  ),
+                  GestureDetector(
+                    child: SectionTile(
+                      image : 'room.png',
+                      name : 'West Wing'
+                    ),
+                    onTap: (){
+                      Navigator.push(context,new MaterialPageRoute(
+                      builder: (context)=>
+                      new Rooms())
+                      );
+                    },
+                  ),
+                  GestureDetector(
+                    child: SectionTile(
+                      image : 'room.png',
+                      name : 'Seaside Wing'
                     ),
                     onTap: (){
                       Navigator.push(context,new MaterialPageRoute(
