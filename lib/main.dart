@@ -19,31 +19,33 @@ void main() => runApp(RootApp());
 class RootApp extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-        return StreamProvider<User>.value(
+        return Container(
+          child: StreamProvider<User>.value(
 
-        value: AuthService().user,
-        child:   MaterialApp(
+          value: AuthService().user,
+          child:   MaterialApp(
       
-        home: Wrapper(),
-        // initialRoute: '/home',
+          home: Wrapper(),
+          // initialRoute: '/home',
 
-        routes: {
-          //'/' : (context) => Loading(),
-          '/home' : (context) => Home(),
-          '/loading' : (context) => Loading(),
-          '/login' : (context) => Login(),
-          '/sections' : (context) => Sections(),
-          '/staff' : (context) => Staff(),
-          '/calendar' : (context) => Calendar(),
-          '/restaurant' : (context) => Restaurant(),
-          '/staff/management' : (context) => Management(),
-          '/test' : (context) => Test(),
-          //'/home' : (context) => Home(),
-          //front end done : Loading, Login, section, staff, calendar, profile,
-          //add  event, settings, notification etc.
-        },
+          routes: {
+            //'/' : (context) => Loading(),
+            '/home' : (context) => Home(),
+            '/loading' : (context) => Loading(),
+            '/login' : (context) => Login(),
+            '/sections' : (context) => Sections(),
+            '/staff' : (context) => Staff(),
+            '/calendar' : (context) => Calendar(),
+            '/restaurant' : (context) => Restaurant(),
+            '/staff/management' : (context) => Management(),
+            '/test' : (context) => Test(),
+            //'/home' : (context) => Home(),
+            //front end done : Loading, Login, section, staff, calendar, profile,
+            //add  event, settings, notification etc.
+          },
       ),
-    );
+    ),
+        );
   }
 
 }
