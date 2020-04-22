@@ -94,9 +94,11 @@ class _SignInState extends State<SignIn> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 FlatButton(onPressed: () {
-                  Navigator.push(context,new MaterialPageRoute(
+                  //Navigator.popUntil(context, ModalRoute.withName("/"));
+                  Navigator.pushAndRemoveUntil(context,new MaterialPageRoute(
                     builder: (context)=>
-                    new Register())
+                    new Register()
+                    ),(r)=>false,
                     );
                 }, 
                 child:Text('        Register       ', 

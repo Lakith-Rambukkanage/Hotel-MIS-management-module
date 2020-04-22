@@ -155,9 +155,10 @@ class _RegisterState extends State<Register> {
                 ),
               ),
               FlatButton(onPressed: () {
-                Navigator.push(context,new MaterialPageRoute(
+                Navigator.pushAndRemoveUntil(context,new MaterialPageRoute(
                     builder: (context)=>
-                    new SignIn())
+                    new SignIn()
+                    ),(r)=>false,
                     );
               }, 
               child:Text('Already Have an Account?', 

@@ -66,16 +66,6 @@ class Staff extends StatelessWidget {
           )
         ],),
         SizedBox(height: 10.0),
-        GestureDetector(
-          child: HomeTile(children: [SizedBox(height: 100.0,)]),
-          onTap: (){
-            //staff profile test
-            Navigator.push(context,new MaterialPageRoute(
-              builder: (context)=>
-              new StaffProfile())
-              );
-          },
-          )
       ]
       );
   }

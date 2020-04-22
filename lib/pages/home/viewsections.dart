@@ -27,7 +27,7 @@ class Sections extends StatelessWidget {
                   ),
                   GestureDetector(
                     child: SectionTile(
-                      image : 'room.png',
+                      image : 'room2.png',
                       name : 'West Wing'
                     ),
                     onTap: (){
@@ -39,7 +39,7 @@ class Sections extends StatelessWidget {
                   ),
                   GestureDetector(
                     child: SectionTile(
-                      image : 'room.png',
+                      image : 'room3.png',
                       name : 'Seaside Wing'
                     ),
                     onTap: (){
