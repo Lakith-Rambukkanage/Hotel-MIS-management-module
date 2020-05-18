@@ -14,7 +14,7 @@ class _WrapperState extends State<Wrapper> {
   Widget build(BuildContext context) {
 
     final user = Provider.of<User>(context);
-    print('printing user from provider');
+    print('printing user from provider ie. listening for changes');
     print(user);
     //return home or authenticate
     //return Home();

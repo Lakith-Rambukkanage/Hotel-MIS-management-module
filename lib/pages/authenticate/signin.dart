@@ -3,6 +3,8 @@ import 'package:flutter_learn/pages/authenticate/register.dart';
 import 'package:flutter_learn/services/auth.dart';
 
 class SignIn extends StatefulWidget {
+  final Function toggleView;
+  SignIn({this.toggleView});
   @override
   _SignInState createState() => _SignInState();
 }
@@ -11,6 +13,12 @@ class _SignInState extends State<SignIn> {
   //text field state
   String email = '';
   String password = '';
+
+  //error
+  String error = '';
+
+  //form key
+  final _formkey = GlobalKey<FormState>();
   
   @override
   Widget build(BuildContext context) {
@@ -44,9 +52,11 @@ class _SignInState extends State<SignIn> {
             Container(
               padding: EdgeInsets.all(30.0),
               child: Form(
+                  key: _formkey,
                   child: Column(
                   children: <Widget>[
                     TextFormField(
+                      validator: (val) =>val.isEmpty? 'Enter Your Email':null,
                       onChanged: (val){
                         setState( () => email = val );
                         //print(email);
@@ -61,6 +71,7 @@ class _SignInState extends State<SignIn> {
                     ),
                     SizedBox(height: 10.0,),
                     TextFormField(
+                      validator: (val) =>val.isEmpty? 'Enter Your Password':null,
                       onChanged: (val){
                         setState( () => password = val);
                         //print(password);
@@ -80,12 +91,18 @@ class _SignInState extends State<SignIn> {
                       color: Colors.cyan.withOpacity(0.7),
                       onPressed: () async {
                         print ('sign in clicked');
-                        print(email);
-                        print(password);
-                        dynamic result = await _authService.signInAnon();
+                        if (_formkey.currentState.validate()){
+                          print(email);
+                          print(password);
+                          dynamic result = await _authService.signInWithEmailAndPassword(email, password);
+                          if (result==null){
+                            setState(() {error = 'Please Enter Valid Details and Check Connectivity';});
+                          }
+                        }
                       }
                       ),
-                    SizedBox(height: 20.0,),
+                    SizedBox(height: 5.0,),
+                    Text(error,textAlign: TextAlign.center, style: TextStyle(color: Colors.red),),
                   ],
                 ),
               ),
@@ -94,12 +111,7 @@ class _SignInState extends State<SignIn> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 FlatButton(onPressed: () {
-                  //Navigator.popUntil(context, ModalRoute.withName("/"));
-                  Navigator.pushAndRemoveUntil(context,new MaterialPageRoute(
-                    builder: (context)=>
-                    new Register()
-                    ),(r)=>false,
-                    );
+                  widget.toggleView();
                 }, 
                 child:Text('        Register       ', 
                 style: TextStyle(color: Colors.grey[200],),
