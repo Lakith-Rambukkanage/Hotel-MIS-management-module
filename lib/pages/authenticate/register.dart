@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_learn/pages/authenticate/signin.dart';
 import 'package:flutter_learn/services/auth.dart';
 
 class Register extends StatefulWidget {
@@ -10,12 +9,15 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+  //const job titles TODO: change accordingly
+  final List<String> jobTitleList = ['Senior Manager','Assistant Manager', 'Head Chef'];
+
   //text field state TODO: change input fields
   String name = '';
   String email = '';
-  String jobtitle = '';
+  String jobTitle ;
   String password = '';
-  String confirmpassword = '';
+  //String confirmpassword = '';
 
   //error
   String error = '';
@@ -94,7 +96,8 @@ class _RegisterState extends State<Register> {
                       ),
                       SizedBox(height: 10.0,),
                       DropdownButtonFormField(
-                        validator: (val) =>val==null? 'Enter Your Job Title':null,
+                        value: jobTitle,
+                        validator: (val) =>val=='Select Job Title'? 'Enter Your Job Title':null,
                         isDense: true,
                         decoration: const InputDecoration(
                           border: UnderlineInputBorder(),
@@ -103,15 +106,17 @@ class _RegisterState extends State<Register> {
                           labelText: 'Job title',
                           labelStyle: TextStyle(color: Colors.grey,),
                         ),
+                        items: jobTitleList.map((title){
+                          return DropdownMenuItem(
+                            value: title,
+                            child: Text(title),
+                          );
+                        }).toList(),
                         onChanged: (value) {
                           print(value);
-                          setState(()=> jobtitle=value );
+                          setState(()=> jobTitle=value );
                         },
-                        items: <String>['Senior Manager','Assistant Manager', 'Head Chef']
-                            .map<DropdownMenuItem<String>>((String value) {return DropdownMenuItem<String>(
-                                  value: value,
-                                  child: Text(value),);}).toList(),
-                        ),
+                      ),
                       SizedBox(height: 10.0,),
                       TextFormField(
                         validator: (val) =>val.isEmpty? 'Enter a Password For Your Account':null,
@@ -135,7 +140,7 @@ class _RegisterState extends State<Register> {
                         onPressed: () async {
                           print ('Register clicked');
                           if (_formkey.currentState.validate()){
-                            dynamic result = await _authService.registerNewUser(email, password);
+                            dynamic result = await _authService.registerNewUser(email, password,name,jobTitle);
                             if (result==null){
                               setState(() {error = 'Please Enter Valid Details and Check Connectivity';});
                             }

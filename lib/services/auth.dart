@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_learn/models/user.dart';
-import 'package:flutter_learn/pages/authenticate/signin.dart';
+import 'package:flutter_learn/services/database.dart';
 
 class AuthService{
 
@@ -45,10 +45,11 @@ class AuthService{
     }
   }
   //register with email and password
-  Future registerNewUser(String email,String password) async{
+  Future registerNewUser(String email,String password, String name, String jobTitle) async{
     try{
       AuthResult authresult = await _auth.createUserWithEmailAndPassword(email: email, password: password);
       FirebaseUser firebaseUser = authresult.user;
+      await DatabaseService(uid: firebaseUser.uid).updateUserData(name, jobTitle);
       return _userFromFirebaseUser(firebaseUser);
     }catch(e){
         print('Reister error');
