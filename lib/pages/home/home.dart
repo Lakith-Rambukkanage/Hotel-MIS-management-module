@@ -6,7 +6,6 @@ import 'package:flutter_learn/custom_widgets/screen.dart';
 import 'package:flutter_learn/custom_widgets/staffpanel.dart';
 import 'package:flutter_learn/custom_widgets/todaypanel.dart';
 import 'package:flutter_learn/pages/home/calendar.dart';
-import 'package:flutter_learn/pages/home/calendarevents.dart';
 import 'package:flutter_learn/pages/home/viewevent.dart';
 import 'rooms.dart';
 import 'viewsections.dart';

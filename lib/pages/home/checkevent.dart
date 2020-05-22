@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_learn/custom_widgets/capacitygraph.dart';
 import 'package:flutter_learn/custom_widgets/screen.dart';
 
 class CheckEvent extends StatelessWidget {

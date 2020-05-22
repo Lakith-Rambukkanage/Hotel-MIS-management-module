@@ -3,7 +3,6 @@ import 'package:flutter_learn/custom_widgets/hometile.dart';
 import 'package:flutter_learn/custom_widgets/screen.dart';
 import 'package:flutter_learn/custom_widgets/staffpanel.dart';
 import 'package:flutter_learn/pages/home/management.dart';
-import 'package:flutter_learn/pages/home/staffprofile.dart';
 
 class Staff extends StatelessWidget {
   @override
