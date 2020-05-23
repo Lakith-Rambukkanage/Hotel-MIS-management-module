@@ -34,7 +34,7 @@ class RootApp extends StatelessWidget{
             '/loading' : (context) => Loading(),
             '/login' : (context) => Login(),
             '/sections' : (context) => Sections(),
-            '/staff' : (context) => Staff(),
+            '/staff' : (context) => ViewStaff(),
             '/calendar' : (context) => Calendar(),
             '/restaurant' : (context) => Restaurant(),
             '/staff/management' : (context) => Management(),
