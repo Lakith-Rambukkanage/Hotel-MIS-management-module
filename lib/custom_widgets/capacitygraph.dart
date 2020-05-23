@@ -36,10 +36,10 @@ class CapacityGraph extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children : <Widget>[
-          Container(width: width,height: whiteheight, decoration:BoxDecoration(color: Colors.white,borderRadius: BorderRadius.vertical(top:Radius.circular(20) )), 
+          Container(width: width,height: whiteheight, decoration:BoxDecoration(color: Colors.white),
             child: Center(child: Text(' $whiteLabel - $white')),),
           Container(width: width,height: cyanheight, color: Colors.cyan, child: Center(child: Text(' $cyanLabel - $cyan')),),
-          Container(width: width,height: blueheight,decoration:BoxDecoration(color: Colors.blue,borderRadius: BorderRadius.vertical(bottom:Radius.circular(20) )), 
+          Container(width: width,height: blueheight,decoration:BoxDecoration(color: Colors.blue),
             child: Center(child: Text(' $blueLabel - $blue')),),
           ],
       ),

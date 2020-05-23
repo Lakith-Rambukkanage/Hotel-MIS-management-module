@@ -71,6 +71,7 @@ class ReusableScreen extends StatelessWidget{
                     child: GestureDetector(
                       onTap: (){
                         //profile
+                        Navigator.pop(context);
                         Navigator.push(context,new MaterialPageRoute(
                             builder: (context)=>
                             new Profile())
@@ -103,6 +104,7 @@ class ReusableScreen extends StatelessWidget{
                       // Update the state of the app
                       // ...
                       // Then close the drawer
+                      Navigator.pop(context);
                       Navigator.pushNamed(context,'/home');
                     },
                   ),
@@ -113,6 +115,7 @@ class ReusableScreen extends StatelessWidget{
                       // Update the state of the app
                       // ...
                       // Then close the drawer
+                      Navigator.pop(context);
                       Navigator.pushNamed(context,'/calendar');
                     },
                   ),
@@ -123,6 +126,7 @@ class ReusableScreen extends StatelessWidget{
                       // Update the state of the app
                       // ...
                       // Then close the drawer
+                      Navigator.pop(context);
                       Navigator.pushNamed(context,'/staff');
                     },
                   ),
@@ -133,6 +137,7 @@ class ReusableScreen extends StatelessWidget{
                       // Update the state of the app
                       // ...
                       // Then close the drawer
+                      Navigator.pop(context);
                       Navigator.pushNamed(context,'/sections');
                     },
                   ),
@@ -143,6 +148,7 @@ class ReusableScreen extends StatelessWidget{
                       // Update the state of the app
                       // ...
                       // Then close the drawer
+                      Navigator.pop(context);
                       Navigator.pushNamed(context,'/restaurant');
                     },
                   ),

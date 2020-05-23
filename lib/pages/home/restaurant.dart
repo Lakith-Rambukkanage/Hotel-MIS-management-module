@@ -5,7 +5,7 @@ class Restaurant extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ReusableScreen(
-      appBarTitle: 'Manage Restaurant', 
+      appBarTitle: 'Restaurant',
       propic: 'dummypropic.png',
         child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

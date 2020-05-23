@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_learn/custom_widgets/hometile.dart';
 
 class MapIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return HomeTile(
+    return Column(
       children: <Widget>[
                     Container(
                         height: 100.0,

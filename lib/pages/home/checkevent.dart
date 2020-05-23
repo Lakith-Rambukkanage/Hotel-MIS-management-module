@@ -69,12 +69,12 @@ class CheckEvent extends StatelessWidget {
                             FlatButton.icon(
                               onPressed: (){}, 
                               icon: Icon(Icons.notifications,color: Colors.blue,), 
-                              label: Text('Instructions to staff'),
+                              label: Text('Notify staff'),
                             ),
                             FlatButton.icon(
                               onPressed: (){}, 
                               icon: Icon(Icons.delete,color: Colors.red,), 
-                              label: Text('Remove Event '),
+                              label: Text('Cancel Event '),
                             ),
                           ],
                         ),
@@ -89,7 +89,7 @@ class CheckEvent extends StatelessWidget {
                             FlatButton.icon(
                               onPressed: (){}, 
                               icon: Icon(Icons.table_chart, color: Colors.blue,),
-                              label: Text('Hall Preparations'),
+                              label: Text('Hall Prep'),
                               //TODO : functions availablity according to user
                             ),
                           ],

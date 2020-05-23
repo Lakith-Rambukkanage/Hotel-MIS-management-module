@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CalendarIcon extends StatelessWidget {
-  final String month;
+  final int month;
   final String date;
 
   const CalendarIcon({
@@ -11,6 +11,7 @@ class CalendarIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<String> monthList = ['Jan','Feb','Mar','Apr','May','June','July','Aug','Sep','Oct','Nov','Dec'];
     return Container(
                         decoration: new BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(30.0)),
                         child: Padding(
@@ -18,15 +19,15 @@ class CalendarIcon extends StatelessWidget {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: <Widget>[
-                              Text(month,
+                              Text(monthList[this.month-1],
                               style: TextStyle(
-                              fontSize: 20.0,
+                              fontSize: 15.0,
                               color: Colors.grey[800]
                               ),
                               ),
-                              Text('$date',
+                              Text(date,
                               style: TextStyle(
-                              fontSize: 70.0,
+                              fontSize: 23.0,
                               color: Colors.grey[800]
                               ),
                               ),
