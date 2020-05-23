@@ -1,18 +1,4 @@
-
-
-class User {
-  String uid;
-  String email;
-
-
-  User({String uid,String name,String email}){
-    this.uid=uid;
-    this.email = email;
-  }
-}
-
-
-class UserData {
+class Staff {
   String uid;
   String name;
   String email;
@@ -22,7 +8,7 @@ class UserData {
   bool activeStatus;
   bool userEnabled;
 
-  UserData({String uid,String name,String email,String mobileNo,String jobTitle,String section,bool activeStatus,bool userEnabled}){
+  Staff({String uid,String name,String email,String mobileNo,String jobTitle,String section,bool activeStatus,bool userEnabled}){
     this.uid=uid;
     this.name = name;
     this.email = email;
