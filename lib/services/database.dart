@@ -60,6 +60,7 @@ class DatabaseService {
             uid: doc.documentID,
             name: doc.data['name']??'',
             email: doc.data['email']??'',
+            mobileNo: doc.data['mobileNo']??'',
             section: doc.data['section']??'' ,
             jobTitle: doc.data['jobTitle'] ??'',
             activeStatus: doc.data['activeStatus']??false,
