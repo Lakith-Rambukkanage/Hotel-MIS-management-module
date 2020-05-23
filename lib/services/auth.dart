@@ -8,7 +8,7 @@ class AuthService{
 
   //create custom user object based on the returned firebase user
   User _userFromFirebaseUser(FirebaseUser user){
-    return user != null ? User(id: user.uid) :null;
+    return user != null ? User(uid: user.uid) :null;
   }
 
   //auth change FirebaseUser stream converted to a User stream of custom user model
@@ -45,14 +45,14 @@ class AuthService{
     }
   }
   //register with email and password
-  Future registerNewUser(String email,String password, String name, String jobTitle) async{
+  Future registerNewUser(String email,String mobileNo,String password, String name, String jobTitle) async{
     try{
       AuthResult authresult = await _auth.createUserWithEmailAndPassword(email: email, password: password);
       FirebaseUser firebaseUser = authresult.user;
-      await DatabaseService(uid: firebaseUser.uid).updateUserData(name, jobTitle);
+      await DatabaseService(uid: firebaseUser.uid).updateUserData(name,email,mobileNo, jobTitle,'none',false,false);
       return _userFromFirebaseUser(firebaseUser);
     }catch(e){
-        print('Reister error');
+        print('Register error');
         print(e.toString());
         return null;
     }
