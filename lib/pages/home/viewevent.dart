@@ -9,10 +9,10 @@ class ViewEvent extends StatelessWidget {
   Widget build(BuildContext context) {
     return ReusableScreen(
       appBarTitle: 'Events', 
-      propic: 'dummypropic.png', 
-      username: 'Thomas Shelby', 
-      jobtitle: 'Manager', 
-      content: <Widget>[
+      propic: 'dummypropic.png',
+        child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children :<Widget>[
         GestureDetector(
           onTap: (){
                         Navigator.push(context,new MaterialPageRoute(
@@ -155,6 +155,7 @@ class ViewEvent extends StatelessWidget {
               ]
           ),
       ],
-      );
+      )
+    );
   }
 }

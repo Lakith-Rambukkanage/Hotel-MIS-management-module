@@ -8,10 +8,10 @@ class Calendar extends StatelessWidget {
     DateTime _selectedDay = DateTime.now();
     return ReusableScreen(
       appBarTitle: 'Calendar & Events', 
-      propic: 'dummypropic.png', 
-      username: 'Thomas Shelby', 
-      jobtitle: 'Manager',
-      content: [
+      propic: 'dummypropic.png',
+      child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children :  [
         Container(
           color: Colors.white,
           child: TableCalendar(
@@ -32,6 +32,7 @@ class Calendar extends StatelessWidget {
             )
           ),
         ],
-      );
+      )
+    );
   }
 }

@@ -7,10 +7,10 @@ class NotificationPanel extends StatelessWidget {
   Widget build(BuildContext context) {
     return ReusableScreen(
       propic: 'dummypropic.png',
-      username: 'Thomas Shelby',
-      jobtitle: 'Manager',
-      appBarTitle: 'Notifications', 
-      content: <Widget>[
+      appBarTitle: 'Notifications',
+        child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children :<Widget>[
           HomeTile(
               children : <Widget>[ 
                 Container(width: 6.0,height: 50.0 ,color: Colors.cyan,),
@@ -119,6 +119,7 @@ class NotificationPanel extends StatelessWidget {
               ]
           ),
       ],
+    )
     );
   }
 }

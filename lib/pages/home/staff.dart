@@ -4,15 +4,15 @@ import 'package:flutter_learn/custom_widgets/screen.dart';
 import 'package:flutter_learn/custom_widgets/staffpanel.dart';
 import 'package:flutter_learn/pages/home/management.dart';
 
-class Staff extends StatelessWidget {
+class ViewStaff extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ReusableScreen(
       propic: 'dummypropic.png',
-      username: 'Thomas Shelby',
-      jobtitle: 'Manager',
       appBarTitle: 'Staff',
-      content: [
+        child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children : [
         GestureDetector(
           onTap: (){
             Navigator.push(context,new MaterialPageRoute(
@@ -66,6 +66,6 @@ class Staff extends StatelessWidget {
         ],),
         SizedBox(height: 10.0),
       ]
-      );
+      ));
   }
 }

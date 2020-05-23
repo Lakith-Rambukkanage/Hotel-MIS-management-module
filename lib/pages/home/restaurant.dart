@@ -6,10 +6,10 @@ class Restaurant extends StatelessWidget {
   Widget build(BuildContext context) {
     return ReusableScreen(
       appBarTitle: 'Manage Restaurant', 
-      propic: 'dummypropic.png', 
-      username: 'Thomas shelby', 
-      jobtitle: 'Manager',
-      content: <Widget>[
+      propic: 'dummypropic.png',
+        child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children : <Widget>[
         Container(
                   margin: EdgeInsets.all(1.0),
                   width: 450.0,
@@ -93,6 +93,6 @@ class Restaurant extends StatelessWidget {
                   ),
                 ),
       ], 
-      );
+      ));
   }
 }

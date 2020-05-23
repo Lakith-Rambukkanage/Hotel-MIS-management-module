@@ -9,10 +9,10 @@ class Sections extends StatelessWidget {
   Widget build(BuildContext context) {
     return ReusableScreen(
       propic: 'dummypropic.png',
-      username: 'Thomas Shelby',
-      jobtitle: 'Manager',
       appBarTitle: 'Sections',
-      content: <Widget>[
+        child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children : <Widget>[
                   GestureDetector(
                     child: SectionTile(
                       image : 'room.png',
@@ -64,6 +64,7 @@ class Sections extends StatelessWidget {
                   // TODO : in each section show updates from manager etc. 
                   // TODO : allow broadcast to all employees within section
                 ],
+    )
     );
   }
 }

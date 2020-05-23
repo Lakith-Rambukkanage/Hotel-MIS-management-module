@@ -10,11 +10,12 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   //const job titles TODO: change accordingly
-  final List<String> jobTitleList = ['Senior Manager','Assistant Manager', 'Head Chef'];
+  final List<String> jobTitleList = ['Senior Manager','Assistant Manager', 'Head Chef','Employee'];
 
   //text field state TODO: change input fields
   String name = '';
   String email = '';
+  String mobileNo = '';
   String jobTitle ;
   String password = '';
   //String confirmpassword = '';
@@ -46,23 +47,13 @@ class _RegisterState extends State<Register> {
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
               SizedBox(height: 60.0,),
-              Row(
-                children: <Widget>[
-                  SizedBox(width: 20.0,),
-                  Center(
-                        child: CircleAvatar(
-                          backgroundImage: AssetImage('assets/pearl_logo.png'),
-                          //radius: 200.0,
-                          backgroundColor: Colors.transparent,
-                          maxRadius: 50.0,
-                          minRadius: 40.0,
-                        ),
-                  ),
-              Text('Register as an Employee', style: TextStyle(color: Colors.white,fontSize: 20.0),),
-                ],
+              SizedBox(width: 20.0,),
+              Center(
+                    child: Text('Register',style: TextStyle(color: Colors.white, fontSize: 30.0),),
               ),
+              SizedBox(height: 30.0,),
               Container(
-                padding: EdgeInsets.all(30.0),
+                padding: EdgeInsets.symmetric(vertical: 0.0,horizontal: 30.0),
                 child: Form(
                     key: _formkey,
                     child: Column(
@@ -91,6 +82,20 @@ class _RegisterState extends State<Register> {
                           filled: true,
                           fillColor: Colors.white,
                           labelText: 'Email',
+                          labelStyle: TextStyle(color: Colors.grey,),
+                        ),
+                      ),
+                      SizedBox(height: 10.0,),
+                      TextFormField(
+                        validator: (val) => val.length!=10? 'Enter valid Mobile No':null,
+                        onChanged: (val){
+                          setState( () => mobileNo = val );
+                        },
+                        decoration: const InputDecoration(
+                          border: UnderlineInputBorder(),
+                          filled: true,
+                          fillColor: Colors.white,
+                          labelText: 'Mobile No',
                           labelStyle: TextStyle(color: Colors.grey,),
                         ),
                       ),
@@ -140,7 +145,7 @@ class _RegisterState extends State<Register> {
                         onPressed: () async {
                           print ('Register clicked');
                           if (_formkey.currentState.validate()){
-                            dynamic result = await _authService.registerNewUser(email, password,name,jobTitle);
+                            dynamic result = await _authService.registerNewUser(email,mobileNo, password,name,jobTitle);
                             if (result==null){
                               setState(() {error = 'Please Enter Valid Details and Check Connectivity';});
                             }

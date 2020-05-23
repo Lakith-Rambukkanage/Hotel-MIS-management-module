@@ -16,10 +16,10 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return ReusableScreen(
       propic: 'dummypropic.png',
-      username: 'Thomas Shelby',
-      jobtitle: 'Manager',
       appBarTitle: 'Dashboard',
-      content: <Widget>[
+      child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+        children :<Widget>[
                 GestureDetector(
                   onTap: (){
                     Navigator.push(context,new MaterialPageRoute(
@@ -33,7 +33,7 @@ class Home extends StatelessWidget {
                   onTap: (){
                     Navigator.push(context,new MaterialPageRoute(
                     builder: (context)=>
-                    new Staff())
+                    new ViewStaff())
                     );
                   },
                   child: StaffPanel(
@@ -91,6 +91,7 @@ class Home extends StatelessWidget {
                           ],
                         )),)],)),
                 ]
-      );
+      )
+    );
   }
 }

@@ -6,10 +6,10 @@ class CheckEvent extends StatelessWidget {
   Widget build(BuildContext context) {
     return ReusableScreen(
       appBarTitle: 'Events', 
-      propic: 'dummypropic.png', 
-      username: 'Thomas Shelby', 
-      jobtitle: 'Manager', 
-      content: <Widget>[
+      propic: 'dummypropic.png',
+      child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+        children :<Widget>[
         Container(
                   margin: EdgeInsets.all(1.0),
                   width: 450.0,
@@ -99,6 +99,7 @@ class CheckEvent extends StatelessWidget {
                   ),
                 ),
       ],
-      );
+      )
+    );
   }
 }
