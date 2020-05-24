@@ -27,7 +27,7 @@ class ReusableScreen extends StatelessWidget{
     final user = Provider.of<User>(context);
 
     return StreamBuilder<UserData>(
-      stream: DatabaseService(uid: user.uid).userData,
+      stream: DatabaseService(uid: user.uid??'').userData,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           UserData userData = snapshot.data;
@@ -153,25 +153,15 @@ class ReusableScreen extends StatelessWidget{
                     },
                   ),
                   ListTile(
-                    contentPadding: EdgeInsets.all(90.0),
-                    title: Text('Log out'),
-                    leading: Icon(Icons.computer, color: Colors.cyan,),
-                    onTap: () async{
-                      // Update the state of the app
-                      // ...
-                      // Then close the drawer
-                      Navigator.pop(context);
-                      Navigator.popUntil(context, ModalRoute.withName("/"));
-                      await _auth.signOut();
-                      // Front end old code
-                      // Navigator.pushAndRemoveUntil(
-                      // context,
-                      // new MaterialPageRoute(
-                      // builder: (context)=>
-                      // new SignIn()),
-                      // (r)=>false,
-                      // );
-                    },
+                    contentPadding: EdgeInsets.all(10.0),
+                    subtitle: FlatButton.icon(
+                        onPressed: ()async{
+                          Navigator.pop(context);
+                          Navigator.popUntil(context, ModalRoute.withName("/"));
+                          await _auth.signOut();
+                        },
+                        icon: Icon(Icons.computer, color: Colors.cyan,),
+                        label: Text('Log Out')),
                   ),
                 ],
               ),

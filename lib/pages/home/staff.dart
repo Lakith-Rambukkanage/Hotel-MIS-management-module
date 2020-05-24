@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/custom_widgets/screen.dart';
-import 'package:flutter_learn/custom_widgets/staffpanel.dart';
 import 'package:flutter_learn/pages/home/employees.dart';
 import 'package:flutter_learn/pages/home/management.dart';
 
