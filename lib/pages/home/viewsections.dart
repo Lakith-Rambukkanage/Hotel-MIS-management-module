@@ -1,9 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/custom_widgets/screen.dart';
 import 'package:flutter_learn/pages/home/restaurant.dart';
 import 'package:flutter_learn/pages/home/rooms_normal.dart';
 import 'package:flutter_learn/pages/home/rooms_seaside.dart';
 import 'package:flutter_learn/pages/home/vieworders.dart';
+import 'package:flutter_learn/pages/home/viewrestaurant.dart';
+import 'package:flutter_learn/pages/home/viewrooms.dart';
 import 'package:flutter_learn/pages/home/viewtables.dart';
 
 class Sections extends StatelessWidget {
@@ -15,17 +18,23 @@ class Sections extends StatelessWidget {
         child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children : <Widget>[
-          Container(
-            decoration: new BoxDecoration(color: Colors.white,),
-            width: 200.0,
-            padding: const EdgeInsets.all(10.0),
-            child: Text('Rooms',style: TextStyle(fontSize: 20.0),textAlign: TextAlign.center,),
+          Card(
+            child: ListTile(
+              leading: Text('Rooms',style: TextStyle(fontSize: 20.0),textAlign: TextAlign.center,),
+              trailing: Icon(Icons.airline_seat_individual_suite),
+              onTap: (){
+                Navigator.push(context,new MaterialPageRoute(
+                    builder: (context)=>
+                    new ViewRooms())
+                );
+              },
+            ),
           ),
           Container(
-            height: 165.0,
+            height: 170.0,
             child: GridView.count(
               primary: false,
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(5),
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,
               crossAxisCount: 2,
@@ -36,7 +45,7 @@ class Sections extends StatelessWidget {
                     title: Container(
                       decoration: new BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(10.0)),
                       padding: const EdgeInsets.all(10.0),
-                      child: Text('Sea Side'),
+                      child: Text('Sea Side',textAlign: TextAlign.center,),
                     ),
                     //subtitle: Text('View room Occupance'),
                     onTap: (){
@@ -55,7 +64,7 @@ class Sections extends StatelessWidget {
                     title: Container(
                       decoration: new BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(10.0)),
                       padding: const EdgeInsets.all(10.0),
-                      child: Text('Normal',),
+                      child: Text('Normal',textAlign: TextAlign.center,),
                     ),
                     //subtitle: Text('View room Occupance'),
                     onTap: (){
@@ -72,17 +81,23 @@ class Sections extends StatelessWidget {
             ),
           ),
           //Restaurant kitchen and restaurant
-          Container(
-            decoration: new BoxDecoration(color: Colors.white,),
-            width: 200.0,
-            padding: const EdgeInsets.all(10.0),
-            child: Text('Restaurant',style: TextStyle(fontSize: 20.0),textAlign: TextAlign.center,),
+          Card(
+            child: ListTile(
+              leading: Text('Restaurant',style: TextStyle(fontSize: 20.0),textAlign: TextAlign.center,),
+              trailing: Icon(Icons.restaurant),
+              onTap: (){
+                Navigator.push(context,new MaterialPageRoute(
+                    builder: (context)=>
+                    new ViewRestaurant())
+                );
+              },
+            ),
           ),
           Container(
-            height: 165.0,
+            height: 170.0,
             child: GridView.count(
               primary: false,
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(5),
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,
               crossAxisCount: 2,
@@ -93,7 +108,7 @@ class Sections extends StatelessWidget {
                     title: Container(
                       decoration: new BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(10.0)),
                       padding: const EdgeInsets.all(10.0),
-                      child: Text('Kitchen'),
+                      child: Text('Kitchen',textAlign: TextAlign.center,),
                     ),
                     //subtitle: Text('View room Occupance'),
                     onTap: (){
@@ -104,7 +119,7 @@ class Sections extends StatelessWidget {
                     },
                   ),
                   //color: Colors.white,
-                  decoration: BoxDecoration(image:  DecorationImage(image: AssetImage('assets/Rest.png'),fit: BoxFit.fitHeight)),
+                  decoration: BoxDecoration(image:  DecorationImage(image: AssetImage('assets/kitchen.PNG'),fit: BoxFit.fitHeight)),
                 ),
                 Container(
                   padding: const EdgeInsets.all(8),
@@ -112,7 +127,7 @@ class Sections extends StatelessWidget {
                     title: Container(
                       decoration: new BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(10.0)),
                       padding: const EdgeInsets.all(10.0),
-                      child: Text('Tables'),
+                      child: Text('Tables',textAlign: TextAlign.center,),
                     ),
                     //subtitle: Text('View room Occupance'),
                     onTap: (){
@@ -129,17 +144,23 @@ class Sections extends StatelessWidget {
             ),
           ),
                   //Halls
-          Container(
-            decoration: new BoxDecoration(color: Colors.white,),
-            width: 200.0,
-            padding: const EdgeInsets.all(10.0),
-            child: Text('Halls',style: TextStyle(fontSize: 20.0),textAlign: TextAlign.center,),
+          Card(
+            child: ListTile(
+              leading: Text('Halls',style: TextStyle(fontSize: 20.0),textAlign: TextAlign.center,),
+              trailing: Icon(Icons.business),
+              onTap: (){
+                Navigator.push(context,new MaterialPageRoute(
+                    builder: (context)=>
+                    new Restaurant())
+                );
+              },
+            ),
           ),
           Container(
             height: 165.0,
             child: GridView.count(
               primary: false,
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(5),
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,
               crossAxisCount: 2,
@@ -150,7 +171,7 @@ class Sections extends StatelessWidget {
                     title: Container(
                       decoration: new BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(10.0)),
                       padding: const EdgeInsets.all(10.0),
-                      child: Text('East Hall'),
+                      child: Text('East Hall',textAlign: TextAlign.center,),
                     ),
                     //subtitle: Text('View room Occupance'),
                     onTap: (){
@@ -161,7 +182,7 @@ class Sections extends StatelessWidget {
                     },
                   ),
                   //color: Colors.white,
-                  decoration: BoxDecoration(image:  DecorationImage(image: AssetImage('assets/Rest.png'),fit: BoxFit.fitHeight)),
+                  decoration: BoxDecoration(image:  DecorationImage(image: AssetImage('assets/hall1.PNG'),fit: BoxFit.fitHeight)),
                 ),
                 Container(
                   padding: const EdgeInsets.all(8),
@@ -169,7 +190,7 @@ class Sections extends StatelessWidget {
                     title: Container(
                       decoration: new BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(10.0)),
                       padding: const EdgeInsets.all(10.0),
-                      child: Text('West Hall'),
+                      child: Text('West Hall',textAlign: TextAlign.center,),
                     ),
                     //subtitle: Text('View room Occupance'),
                     onTap: (){
@@ -180,7 +201,7 @@ class Sections extends StatelessWidget {
                     },
                   ),
                   //color: Colors.white,
-                  decoration: BoxDecoration(image:  DecorationImage(image: AssetImage('assets/Rest.png'),fit: BoxFit.fitHeight)),
+                  decoration: BoxDecoration(image:  DecorationImage(image: AssetImage('assets/hall2.PNG'),fit: BoxFit.fitHeight)),
                 ),
               ],
             ),

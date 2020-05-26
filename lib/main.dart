@@ -31,7 +31,7 @@ class RootApp extends StatelessWidget{
           routes: {
             //'/' : (context) => Loading(),
             '/home' : (context) => Home(),
-            '/loading' : (context) => Loading(),
+            '/loading' : (context) => LoadingScreen(),
             '/login' : (context) => Login(),
             '/sections' : (context) => Sections(),
             '/staff' : (context) => ViewStaff(),

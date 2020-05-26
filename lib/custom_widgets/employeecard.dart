@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_learn/models/staff.dart';
 import 'package:flutter_learn/pages/home/staffprofile.dart';
 
-class EmployeedCard extends StatelessWidget {
+class EmployeeCard extends StatelessWidget {
 
   final Staff staffMember;
 
 
-  EmployeedCard({
+  EmployeeCard({
      @required this.staffMember,
      });
 
@@ -16,7 +16,7 @@ class EmployeedCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String name = this.staffMember.name;
-    String uid = this.staffMember.uid;
+    //String uid = this.staffMember.uid;
     String jobTitle = this.staffMember.jobTitle;
     String section = this.staffMember.section;
     bool activeStatus = this.staffMember.activeStatus;
@@ -39,7 +39,7 @@ class EmployeedCard extends StatelessWidget {
         onTap: (){
           Navigator.push(context,new MaterialPageRoute(
             builder: (context)=>
-            new StaffProfile(staffMember: this.staffMember,))
+            new StaffProfile(uid: this.staffMember.uid,))
         );},
         leading: CircleAvatar(
           radius: 30.0,
@@ -49,8 +49,8 @@ class EmployeedCard extends StatelessWidget {
             radius: 24.0,
             backgroundImage: AssetImage('assets/$propic'),),
         ),
-        title: Text(name),
-        subtitle: Text (jobTitle),
+        title: Text('$name'),
+        subtitle: Text ('$jobTitle - $section'),
       ),
     );
   }

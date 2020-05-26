@@ -26,15 +26,15 @@ class OrderCard extends StatelessWidget {
         break;
       case 'confirmed':
         stat = Colors.amber;
-        icon = Icons.check;
+        icon = Icons.play_circle_filled;
         break;
       case 'cooking':
         stat = Colors.deepOrange;
         icon = Icons.whatshot;
         break;
       case 'cooked':
-        stat = Colors.green;
-        icon = Icons.restaurant;
+        stat = Colors.deepOrangeAccent;
+        icon = Icons.room_service;
         break;
       default:
         stat = Colors.blue;
@@ -45,7 +45,7 @@ class OrderCard extends StatelessWidget {
       child: ListTile(
         leading: Icon(icon,color: stat,),
         title: Text('Order Status : $status'),
-        subtitle: Text ('Total : $total'),
+        subtitle: Text ('Total : $total',style: TextStyle(color: Colors.green[700]),),
       ),
     );
   }

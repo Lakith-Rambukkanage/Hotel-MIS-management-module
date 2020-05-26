@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/custom_widgets/employeecard.dart';
 import 'package:flutter_learn/models/staff.dart';
+import 'package:flutter_learn/shared/loading.dart';
 import 'package:provider/provider.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class StaffList extends StatefulWidget {
   @override
@@ -19,7 +19,7 @@ class _StaffListState extends State<StaffList> {
           itemCount: staffList.length,
           itemBuilder: (context, index) {
           if (staffList[index].jobTitle!='Employee') {
-            return EmployeedCard(staffMember: staffList[index]);
+            return EmployeeCard(staffMember: staffList[index]);
           }else{
             return Container();
           }
@@ -27,9 +27,8 @@ class _StaffListState extends State<StaffList> {
         ),
       );
     }else{
-      //TODO: Loading
       print('Loading - staff list');
-      return Container(color: Colors.red, height: 200.0,);
+      return Loading();
     }
   }
 }

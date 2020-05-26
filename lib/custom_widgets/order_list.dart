@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/custom_widgets/ordercard.dart';
-import 'package:flutter_learn/custom_widgets/tablecard.dart';
 import 'package:flutter_learn/models/restaurentmodels.dart';
+import 'package:flutter_learn/shared/loading.dart';
 import 'package:provider/provider.dart';
 
 class OrderList extends StatefulWidget {
@@ -27,9 +27,8 @@ class _OrderListState extends State<OrderList> {
         ),
       );
     }else{
-      //TODO: Loading
       print('Loading - Order list');
-      return Container(color: Colors.blue, height: 200.0,child:Text('Loading'));
+      return Loading();
     }
   }
 }

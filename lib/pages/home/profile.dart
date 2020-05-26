@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_learn/custom_widgets/edit_profile_form.dart';
 import 'package:flutter_learn/custom_widgets/screen.dart';
 import 'package:flutter_learn/models/user.dart';
 import 'package:flutter_learn/services/database.dart';
@@ -7,6 +8,19 @@ import 'package:provider/provider.dart';
 class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
+    void _showEditPanel(){
+      showDialog(context: context, builder: (context){
+        return Center(
+          child: Container(
+            height: 400.0,
+            //padding: EdgeInsets.all(30.0),
+            child:EditProfile(),
+          ),
+        );
+      });
+    }
+
     final user = Provider.of<User>(context);
     return StreamBuilder<UserData>(
       stream: DatabaseService(uid: user.uid??'').userData,
@@ -79,14 +93,14 @@ class Profile extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
                                 FlatButton.icon(
-                                  onPressed: (){},
+                                  onPressed: ()=>_showEditPanel(),
                                   icon: Icon(Icons.edit,color: Colors.blue,),
                                   label: Text('Edit details'),
                                 ),
                                 FlatButton.icon(
                                   onPressed: (){},
-                                  icon: Icon(Icons.delete,color: Colors.red,),
-                                  label: Text('delete account'),
+                                  icon: Icon(Icons.remove_circle,color: Colors.red,),
+                                  label: Text('deactivate'),
                                 ),
                               ],
                             )

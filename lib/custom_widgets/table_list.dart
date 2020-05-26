@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/custom_widgets/tablecard.dart';
 import 'package:flutter_learn/models/restaurentmodels.dart';
+import 'package:flutter_learn/shared/loading.dart';
 import 'package:provider/provider.dart';
 
 class TableList extends StatefulWidget {
@@ -23,9 +24,8 @@ class _TableListState extends State<TableList> {
         ),
       );
     }else{
-      //TODO: Loading
       print('Loading - Table list');
-      return Container(color: Colors.blue, height: 200.0,child:Text('Loading'));
+      return Loading();
     }
   }
 }

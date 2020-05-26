@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Loading extends StatelessWidget {
+class LoadingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +22,7 @@ class Loading extends StatelessWidget {
               maxRadius: 210.0,
               minRadius: 200.0,
             ),
-            Text('Loading ...',style: TextStyle(fontFamily:'Vivaldi', color: Colors.grey,fontSize: 20.0),),
+            Text('Loading...',style: TextStyle(color: Colors.grey,fontSize: 15.0),),
           ],
         ),
         ),

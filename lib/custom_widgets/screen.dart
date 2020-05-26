@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/models/user.dart';
+import 'package:flutter_learn/pages/authenticate/loading.dart';
 import 'package:flutter_learn/pages/home/notificationpanel.dart';
 import 'package:flutter_learn/pages/home/profile.dart';
 import 'package:flutter_learn/services/auth.dart';
+import 'package:flutter_learn/shared/loading.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_learn/services/database.dart';
 
@@ -25,7 +27,7 @@ class ReusableScreen extends StatelessWidget{
     final AuthService _auth = AuthService();
     //provider to access user
     final user = Provider.of<User>(context);
-
+    if (user!=null){
     return StreamBuilder<UserData>(
       stream: DatabaseService(uid: user.uid??'').userData,
       builder: (context, snapshot) {
@@ -186,11 +188,13 @@ class ReusableScreen extends StatelessWidget{
           );
         }
         else{
-          //TODO: loading
-          return Scaffold();
+          return LoadingScreen();
         }
       }
     );
+    }else{
+      return LoadingScreen();
+    }
   }
 
 }
