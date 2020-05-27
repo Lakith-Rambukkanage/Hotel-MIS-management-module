@@ -30,26 +30,26 @@ class ViewStaff extends StatelessWidget {
                 child: Icon(Icons.business_center),
               ),
               title: Text('Management'),
-              subtitle:Text('Active : $activeManagement \nLeave : $leaveManagement'),
+              subtitle:Text('View Management Staff'),
             ),
           ),
-          Card(
-            child: ListTile(
-              contentPadding: EdgeInsets.all(10.0),
-              onTap: (){
-                Navigator.push(context,new MaterialPageRoute(
-                    builder: (context)=>
-                    new Employees())
-                );
-              },
-              leading: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Icon(Icons.business_center),
-              ),
-              title: Text('Employees'),
-              subtitle:Text('Active : $activeEmployees \nLeave : $leaveEmployees'),
-            ),
-          ),
+//          Card(
+//            child: ListTile(
+//              contentPadding: EdgeInsets.all(10.0),
+//              onTap: (){
+//                Navigator.push(context,new MaterialPageRoute(
+//                    builder: (context)=>
+//                    new Employees())
+//                );
+//              },
+//              leading: Padding(
+//                padding: const EdgeInsets.all(8.0),
+//                child: Icon(Icons.business_center),
+//              ),
+//              title: Text('Employees'),
+//              subtitle:Text('Active : $activeEmployees \nLeave : $leaveEmployees'),
+//            ),
+//          ),
         SizedBox(height: 20.0,),
         //TODO: On tap do the following
         Card(

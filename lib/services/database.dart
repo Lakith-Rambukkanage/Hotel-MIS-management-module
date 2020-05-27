@@ -190,6 +190,7 @@ class DatabaseService {
       //Future<List> itemsList =  getOfferItems(doc.data['items']);
       //print(itemsList);
       return Offer(
+        docid: doc.documentID??'',
         items: doc.data['items']??[],
         name: doc.data['name']??'',
         price: doc.data['price']??0,
@@ -265,5 +266,13 @@ class DatabaseService {
       'price' : price,
       'validTill' : validTill,
     });
+  }
+  Future extendOffer(String docid,Timestamp validTill) async {
+    return await specialOffersCollection.document(docid).updateData({
+      'validTill' : validTill,
+    });
+  }
+  Future deleteOffer(String docid)async{
+    return await specialOffersCollection.document(docid).delete();
   }
 }

@@ -18,7 +18,7 @@ class _OrderListState extends State<OrderList> {
         child: ListView.builder(
           itemCount: orderList.length,
           itemBuilder: (context, index) {
-            if (orderList[index].status!='served') {
+            if (orderList[index].status!='finished') {
               return OrderCard(order: orderList[index]);
             }else{
               return Container();

@@ -4,7 +4,6 @@ import 'package:flutter_learn/custom_widgets/order_list_panel.dart';
 import 'package:flutter_learn/custom_widgets/screen.dart';
 import 'package:flutter_learn/custom_widgets/table_list_panel.dart';
 import 'package:flutter_learn/models/restaurentmodels.dart';
-import 'package:flutter_learn/pages/home/addoffer.dart';
 import 'package:flutter_learn/pages/home/addofferitems.dart';
 import 'package:flutter_learn/services/database.dart';
 import 'package:flutter_learn/shared/loading.dart';
@@ -77,8 +76,8 @@ class ViewRestaurant extends StatelessWidget {
               ),
               Card(
                 child: ListTile(
-                  leading: Text('Dining Area',style: TextStyle(fontSize: 20.0),textAlign: TextAlign.center,),
-                  trailing: Icon(Icons.room_service),
+                  leading: Text('Dining Area - Tables',style: TextStyle(fontSize: 20.0),textAlign: TextAlign.center,),
+                  trailing: Icon(Icons.room_service,color: Colors.amber,),
                 ),
               ),
               StreamProvider<List<TableDetail>>.value(

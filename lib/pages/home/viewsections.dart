@@ -21,7 +21,7 @@ class Sections extends StatelessWidget {
           Card(
             child: ListTile(
               leading: Text('Rooms',style: TextStyle(fontSize: 20.0),textAlign: TextAlign.center,),
-              trailing: Icon(Icons.airline_seat_individual_suite),
+              trailing: Icon(Icons.airline_seat_individual_suite,color: Colors.pink,),
               onTap: (){
                 Navigator.push(context,new MaterialPageRoute(
                     builder: (context)=>
@@ -84,7 +84,7 @@ class Sections extends StatelessWidget {
           Card(
             child: ListTile(
               leading: Text('Restaurant',style: TextStyle(fontSize: 20.0),textAlign: TextAlign.center,),
-              trailing: Icon(Icons.restaurant),
+              trailing: Icon(Icons.restaurant,color: Colors.pink,),
               onTap: (){
                 Navigator.push(context,new MaterialPageRoute(
                     builder: (context)=>
@@ -147,7 +147,7 @@ class Sections extends StatelessWidget {
           Card(
             child: ListTile(
               leading: Text('Halls',style: TextStyle(fontSize: 20.0),textAlign: TextAlign.center,),
-              trailing: Icon(Icons.business),
+              trailing: Icon(Icons.business,color: Colors.pink,),
               onTap: (){
                 Navigator.push(context,new MaterialPageRoute(
                     builder: (context)=>

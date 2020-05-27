@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/models/staff.dart';
+import 'package:flutter_learn/models/user.dart';
 import 'package:flutter_learn/pages/home/staffprofile.dart';
+import 'package:provider/provider.dart';
 
 class EmployeeCard extends StatelessWidget {
 
@@ -15,8 +17,14 @@ class EmployeeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<User>(context);
     String name = this.staffMember.name;
-    //String uid = this.staffMember.uid;
+    String uid = this.staffMember.uid;
+    bool click = true;
+    if (uid==user.uid){
+      name = 'You';
+      click=false;
+    }
     String jobTitle = this.staffMember.jobTitle;
     String section = this.staffMember.section;
     bool activeStatus = this.staffMember.activeStatus;
@@ -36,6 +44,7 @@ class EmployeeCard extends StatelessWidget {
     return Card(
       margin: EdgeInsets.all(5.0),
       child: ListTile(
+        enabled: click,
         onTap: (){
           Navigator.push(context,new MaterialPageRoute(
             builder: (context)=>

@@ -36,9 +36,13 @@ class OrderCard extends StatelessWidget {
         stat = Colors.deepOrangeAccent;
         icon = Icons.room_service;
         break;
+        case 'served':
+        stat = Colors.green;
+        icon = Icons.check;
+        break;
       default:
         stat = Colors.blue;
-        icon = Icons.restaurant;
+        icon = Icons.done_outline;
     }
     return Card(
       margin: EdgeInsets.all(5.0),

@@ -17,6 +17,7 @@ class OfferCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     List items = this.offer.items;
     String docid = this.offer.docid;
     String name = this.offer.name;
@@ -25,7 +26,15 @@ class OfferCard extends StatelessWidget {
     DateTime validTill = this.offer.validTill.toDate();
     var formatter = new DateFormat('yyyy-MM-dd');
     String formattedDate = formatter.format(validTill);
-
+    DateTime today  = DateTime.now();
+    bool valid = validTill.isAfter(today);
+    Color c;
+    if (valid){
+      c=Colors.green;
+    }
+    else{
+      c=Colors.red;
+    }
     return Card(
       margin: EdgeInsets.all(5.0),
       child: ListTile(
@@ -36,7 +45,7 @@ class OfferCard extends StatelessWidget {
               new EditOffer(offer: offer,))
           );
         },
-        trailing: Icon(Icons.edit,color: Colors.blue,),
+        trailing: Icon(Icons.remove_red_eye,color: c,),
         title: Text('$name'),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

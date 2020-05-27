@@ -52,7 +52,7 @@ class _FinalizeOfferState extends State<FinalizeOffer> {
       Item item = itemList[i];
       itemMap['item'] = itemsCollection.document(item.docid);
       itemMap['quantity'] = item.quantity;
-      print(itemMap);
+      //print(itemMap);
       itemsListToDB.add(itemMap);
     }
     return itemsListToDB;
@@ -79,7 +79,7 @@ class _FinalizeOfferState extends State<FinalizeOffer> {
                     validator: (val) =>val.isEmpty? 'Enter Offer Name':null,
                     onChanged: (val){
                       setState( () => name = val );
-                      print(name);
+                      //print(name);
                     },
                     decoration: const InputDecoration(
                       border: UnderlineInputBorder(),
@@ -148,9 +148,9 @@ class _FinalizeOfferState extends State<FinalizeOffer> {
                           color: Colors.cyan.withOpacity(0.7),
                           onPressed: () async {
                             if (_formkey.currentState.validate()){
-                              print(price);
-                              print(name);
-                              print(selectedDate);
+//                              print(price);
+//                              print(name);
+//                              print(selectedDate);
                               List itemsListToDB = _mapItems(itemList);
 
                           dynamic result = await DatabaseService().addNewOffer(name, itemsListToDB, price, Timestamp.fromDate(selectedDate) );

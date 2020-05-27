@@ -82,7 +82,7 @@ class ItemTile extends StatelessWidget {
     String image = item.image??'';
 
     return Card(
-      color: Colors.cyan,
+      color: Colors.grey[200],
       margin: EdgeInsets.all(5.0),
       child: ListTile(
         leading: CircleAvatar(backgroundColor: Colors.grey,backgroundImage: NetworkImage(image),),
