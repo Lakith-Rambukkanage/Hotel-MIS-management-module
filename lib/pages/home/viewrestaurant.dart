@@ -4,6 +4,8 @@ import 'package:flutter_learn/custom_widgets/order_list_panel.dart';
 import 'package:flutter_learn/custom_widgets/screen.dart';
 import 'package:flutter_learn/custom_widgets/table_list_panel.dart';
 import 'package:flutter_learn/models/restaurentmodels.dart';
+import 'package:flutter_learn/pages/home/addoffer.dart';
+import 'package:flutter_learn/pages/home/addofferitems.dart';
 import 'package:flutter_learn/services/database.dart';
 import 'package:flutter_learn/shared/loading.dart';
 import 'package:provider/provider.dart';
@@ -36,7 +38,12 @@ class ViewRestaurant extends StatelessWidget {
                                     FlatButton.icon(
                                       icon : Icon(Icons.fastfood,color: Colors.green,),
                                       label:Text('Add Offer +'),
-                                      onPressed: (){},
+                                      onPressed: (){
+                                        Navigator.push(context,new MaterialPageRoute(
+                                            builder: (context)=>
+                                            new AddOfferItems())
+                                        );
+                                      },
                                     )
                                   ],
                                 ),

@@ -54,7 +54,7 @@ class EditOffer extends StatelessWidget {
                               child: ListView.builder(
                                 itemCount: itemList.length,
                                 itemBuilder: (context,index){
-                                  return ItemCard(item : itemList[index]);
+                                  return ItemTile(item : itemList[index]);
                                 }
                               ),
                             );

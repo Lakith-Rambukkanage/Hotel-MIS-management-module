@@ -19,6 +19,7 @@ class DatabaseService {
   final CollectionReference ordersCollection = Firestore.instance.collection("orders");
   final CollectionReference roomsCollection = Firestore.instance.collection("rooms");
   final CollectionReference specialOffersCollection = Firestore.instance.collection("special-offers");
+  final CollectionReference itemsCollection = Firestore.instance.collection("items");
 
   Future updateUserData(String name,String email,String mobileNo, String jobTitle, String section,bool activeStatus,bool userEnabled) async {
     return await staffUsersCollection.document(uid).setData({
@@ -159,11 +160,11 @@ class DatabaseService {
   }
   //Orders database Requests
 
-  //to get tables  list snapshots
+  //to get order list snapshots
   Stream<List<OrderDetail>> get ordersList{
     return ordersCollection.snapshots().map(_ordersListFromSnapshot);
   }
-  //to convert rooms in the list in to room detail model
+  //to convert orders in the list in to order detail model
   List<OrderDetail> _ordersListFromSnapshot(QuerySnapshot snapshot){
     return snapshot.documents.map((doc){
       return OrderDetail(
@@ -178,7 +179,7 @@ class DatabaseService {
   Stream<List<Offer>> get offersList{
     return specialOffersCollection.snapshots().map(_offersListFromSnapshot);
   }
-  //to convert rooms in the list in to room detail model
+  //to convert offers in the list in to offer model
   List<Offer> _offersListFromSnapshot(QuerySnapshot snapshot){
     return snapshot.documents.map((doc){
       //print(doc.data['items']);
@@ -220,17 +221,49 @@ class DatabaseService {
       var snap = await item['item'].get();
       Item offerItem=Item(
           docid: snap.documentID,
-          available: snap.data['available'] ?? '',
+          available: snap.data['available'] ?? false,
           name: snap.data['name'] ?? '',
           //description: snap.data['description'] ?? '',
-          persons: snap.data['persons'] ?? '',
+          persons: snap.data['persons'] ?? 1,
           price: snap.data['price'] ?? '',
           category: snap.data['category'] ?? '',
           image: snap.data['image'] ?? '',
-        quantity: item['quantity']
+        quantity: item['quantity']??1,
       );
       offerItems.add(offerItem);
     }
     return offerItems;
+  }
+
+
+
+  //to get items list snapshots by category
+  Stream<List<Item>> getItemListByCategory(){
+    return itemsCollection.where('available', isEqualTo: true).snapshots().map(_itemListFromSnapshot);
+  }
+  //to convert items in the list in to item model
+  List<Item> _itemListFromSnapshot(QuerySnapshot snapshot){
+    return snapshot.documents.map((doc){
+      return Item(
+        docid: doc.documentID,
+        name:doc.data['name']??'',
+        category:doc.data['category']??'',
+        price:doc.data['price']??0,
+        persons:doc.data['persons']??1,
+        available:doc.data['available']??false,
+        image:doc.data['image']??0,
+        quantity: 0,
+      );
+    }).toList();
+  }
+
+  Future addNewOffer(String name,List items,int price,Timestamp validTill) async {
+    return await specialOffersCollection.add({
+      'name' : name,
+      'items' : items,
+      'sold' : 0,
+      'price' : price,
+      'validTill' : validTill,
+    });
   }
 }
