@@ -1,10 +1,17 @@
-import 'package:flutter_learn/models/user.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class Notification {
-  String notificationId;
-  String notificationStatus;
-  DateTime notificationTime;
-  User sender;
-  List<User> recievers;  
-  String content;
+class NotificationModel {
+  String docid;
+  bool read;
+  bool softDelete;
+  String recID;
+  String recName;
+  String senderID;
+  String senderName;
+  String type;
+  String body;
+  DateTime sentDate;
+
+  NotificationModel({this.docid, this.read, this.softDelete, this.recID,
+      this.recName, this.senderID, this.senderName, this.type, this.body,this.sentDate});
 }

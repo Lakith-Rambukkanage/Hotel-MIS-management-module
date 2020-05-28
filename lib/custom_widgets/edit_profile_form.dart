@@ -37,7 +37,6 @@ class _EditProfileState extends State<EditProfile> {
                           validator: (val) => val.isEmpty ? 'Enter Your Name' : null,
                           onChanged: (val) {
                             setState(() => _currentName = val);
-                            print(_currentName);
                           },
                           decoration: const InputDecoration(
                             border: UnderlineInputBorder(),
@@ -78,7 +77,6 @@ class _EditProfileState extends State<EditProfile> {
                             color: Colors.cyan,
                             onPressed: () async {
                               if (_formKey.currentState.validate()) {
-                                print(_currentName);
                                 await DatabaseService(uid: user.uid).editUserData(
                                     username: _currentName ?? snapshot.data.name,
                                     mobileNo: _currentMobileNo ?? snapshot.data.mobileNo);

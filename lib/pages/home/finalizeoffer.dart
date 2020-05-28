@@ -162,6 +162,8 @@ class _FinalizeOfferState extends State<FinalizeOffer> {
                             Navigator.pop(context);
                             Navigator.pop(context);
                             Navigator.pop(context);
+                            String body = (name!=null)?'New Offer \' $name\' was added to Menu':'New Offer was Added';
+                            await DatabaseService().sectionNotification(body, 'Restaurant');
 //                            Navigator.push(context,new MaterialPageRoute(
 //                                builder: (context)=>
 //                                new ViewRestaurant())

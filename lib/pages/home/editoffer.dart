@@ -37,6 +37,8 @@ class _EditOfferState extends State<EditOffer> {
           offer.validTill = Timestamp.fromDate(selectedDate);
           dateError = '';
         });
+        String body = (offer.name!=null)?'Offer \' ${offer.name}\' was edited':'Offer was edited';
+        await DatabaseService().sectionNotification(body, 'Restaurant');
       } catch (e) {
         setState(() {
           dateError = 'An Error Occurred, Please try again';
@@ -114,7 +116,7 @@ class _EditOfferState extends State<EditOffer> {
                     }
                 ),
                 Center(child: FlatButton.icon(
-                    onPressed: ()=>showAlertDialog(context,offer.docid),
+                    onPressed: ()=>showAlertDialog(context,offer.docid,offer.name),
                     icon: Icon(Icons.delete,color: Colors.red,),
                     label: Text('Delete Offer'))
                 )
@@ -123,7 +125,7 @@ class _EditOfferState extends State<EditOffer> {
           ),
         ));
   }
-  showAlertDialog(BuildContext context,String docid) {
+  showAlertDialog(BuildContext context,String docid,String offerName) {
 
     // set up the buttons
     Widget cancelButton = FlatButton(
@@ -136,6 +138,8 @@ class _EditOfferState extends State<EditOffer> {
         try{await DatabaseService().deleteOffer(docid);
         Navigator.pop(context);
         Navigator.pop(context);
+        String body = (offerName!=null)?'Offer \' $offerName\' was deleted':'Offer was deleted';
+        await DatabaseService().sectionNotification(body, 'Restaurant');
         }catch(e){
           print('e.toString()');
           Navigator.pop(context);

@@ -43,7 +43,6 @@ class _EditRoomPackageState extends State<EditRoomPackage> {
                           validator: (val) => val.isEmpty ? 'Enter a Valid Price' : null,
                           onChanged: (val) {
                             setState(() => _currentPriceB = val);
-                            print(_currentPriceB);
                           },
                           decoration: const InputDecoration(
                             border: UnderlineInputBorder(),
@@ -61,7 +60,6 @@ class _EditRoomPackageState extends State<EditRoomPackage> {
                           validator: (val) => val.isEmpty ? 'Enter a Valid Price' : null,
                           onChanged: (val) {
                             setState(() => _currentPriceH = val);
-                            print(_currentPriceH);
                           },
                           decoration: const InputDecoration(
                             border: UnderlineInputBorder(),
@@ -79,7 +77,6 @@ class _EditRoomPackageState extends State<EditRoomPackage> {
                           validator: (val) => val.isEmpty ? 'Enter a Valid Price' : null,
                           onChanged: (val) {
                             setState(() => _currentPriceF = val);
-                            print(_currentPriceF);
                           },
                           decoration: const InputDecoration(
                             border: UnderlineInputBorder(),
@@ -106,6 +103,8 @@ class _EditRoomPackageState extends State<EditRoomPackage> {
                                 price_h: _currentPriceH??snapshot.data.price_h,
                                 price_f: _currentPriceF??snapshot.data.price_f,
                               );
+                              String body = (type!=null)?'Room Package \' $type\' was edited':'Room Package was Edited';
+                              await DatabaseService().sectionNotification(body, 'Rooms');
                               }
                               Navigator.pop(context);
                             }),

@@ -1,6 +1,7 @@
 import 'dart:collection';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_learn/models/notification.dart';
 import 'package:flutter_learn/models/restaurentmodels.dart';
 import 'package:flutter_learn/models/room.dart';
 import 'package:flutter_learn/models/staff.dart';
@@ -20,6 +21,7 @@ class DatabaseService {
   final CollectionReference roomsCollection = Firestore.instance.collection("rooms");
   final CollectionReference specialOffersCollection = Firestore.instance.collection("special-offers");
   final CollectionReference itemsCollection = Firestore.instance.collection("items");
+  final CollectionReference notificationsCollection = Firestore.instance.collection("notifications");
 
   Future updateUserData(String name,String email,String mobileNo, String jobTitle, String section,bool activeStatus,bool userEnabled) async {
     return await staffUsersCollection.document(uid).setData({
@@ -50,6 +52,7 @@ class DatabaseService {
         .map(_userDataFromSnapShot);
   }
 
+
    UserData _userDataFromSnapShot(DocumentSnapshot snapshot) {
     return UserData(
       uid: uid,
@@ -64,6 +67,35 @@ class DatabaseService {
   }
 
   //staff pages database requests
+//  UserData getUserDataByID(String uid){
+//    UserData u;
+//    staffUsersCollection.document(uid).get().then((snap){
+//      if (snap.exists){
+//      u= UserData(
+//        uid:snap.documentID ,
+//        name: snap.data['name']??'',
+//        email: snap.data['email']??'',
+//        mobileNo: snap.data['mobileNo']??'',
+//        userEnabled: snap.data['userEnabled']??false,
+//        activeStatus: snap.data['activeStatus']??false,
+//        jobTitle: snap.data['jobTitle']??'',
+//        section: snap.data['section']??'',
+//      );}else{
+//        u= UserData(
+//          uid:'' ,
+//          name: 'Error retrieving User',
+//          email: '',
+//          mobileNo: '',
+//          userEnabled: false,
+//          activeStatus: false,
+//          jobTitle: '',
+//          section: '',
+//        );
+//      }
+//    });
+//    return u;
+//  }
+
 
   //to get stafflist snapshots
   Stream<List<Staff>> get staffList{
@@ -275,4 +307,70 @@ class DatabaseService {
   Future deleteOffer(String docid)async{
     return await specialOffersCollection.document(docid).delete();
   }
+
+  //Notifications handling
+  //to get notification list snapshots
+  Stream<List<NotificationModel>> notificationList(){
+    return notificationsCollection.where('softDelete', isEqualTo: false).snapshots().map(_notificationListFromSnapshot);
+  }
+  //to convert notification in the list in to notification model
+  List<NotificationModel> _notificationListFromSnapshot(QuerySnapshot snapshot){
+    return snapshot.documents.map((doc){
+      return NotificationModel(
+        docid: doc.documentID,
+        recID:doc.data['recID']??'',
+        recName:doc.data['recName']??'',
+        senderID:doc.data['senderID']??'',
+        senderName:doc.data['senderName']??'',
+        read:doc.data['read']??false,
+        softDelete:doc.data['softDelete']??false,
+        body: doc.data['body']??'Error retrieving message',
+        type: doc.data['senderID']??'',
+        sentDate: doc.data['sentDate'].toDate()??'',
+      );
+    }).toList();
+  }
+  Future sendNotification(String body,String senderID,String recID) async {
+    //document refernce
+    DocumentReference send = staffUsersCollection.document(senderID);
+    var snap = await send.get();
+    String sName = snap.data['name'];
+    DocumentReference rec = staffUsersCollection.document(recID);
+    var snapr = await rec.get();
+    String rName = snapr.data['name'];
+    return await notificationsCollection.add({
+      'body' : body,
+      'senderID' : senderID,
+      'senderName' : sName,
+      'recID' : recID,
+      'recName' :rName,
+      'read' : false,
+      'softDelete' : false,
+      'sentDate' : Timestamp.fromDate(DateTime.now()),
+    });
+  }
+
+  Future markAsRead(String docid) async {
+    return await notificationsCollection.document(docid).updateData({
+      'read' : true,
+    });
+  }
+  Future softDelete(String docid) async {
+    return await notificationsCollection.document(docid).updateData({
+      'softDelete' : true,
+    });
+  }
+  Future sectionNotification(String body,String senderName) async {
+    return await notificationsCollection.add({
+      'body' : body,
+      'senderID' : 'section',
+      'senderName' : senderName,
+      'recID' : 'section receiver',
+      'recName' :'intended',
+      'read' : false,
+      'softDelete' : false,
+      'sentDate' : Timestamp.fromDate(DateTime.now()),
+    });
+  }
+
 }

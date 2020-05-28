@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_learn/custom_widgets/edit_profile_form.dart';
 import 'package:flutter_learn/custom_widgets/screen.dart';
 import 'package:flutter_learn/models/user.dart';
+import 'package:flutter_learn/pages/authenticate/loading.dart';
 import 'package:flutter_learn/services/database.dart';
 import 'package:provider/provider.dart';
 
@@ -22,8 +23,9 @@ class Profile extends StatelessWidget {
     }
 
     final user = Provider.of<User>(context);
+    if (user!=null){
     return StreamBuilder<UserData>(
-      stream: DatabaseService(uid: user.uid??'').userData,
+      stream: DatabaseService(uid: user.uid).userData,
       builder: (context, snapshot) {
       if (snapshot.hasData) {
         UserData userData = snapshot.data;
@@ -113,9 +115,12 @@ class Profile extends StatelessWidget {
         );}
       else{
         print('Loading');
-        return Container(child: Text('Loading'),height: 400.0,color: Colors.red,);
+        return LoadingScreen();
       }
       }
     );
+    }else{
+      return LoadingScreen();
+    }
   }
 }

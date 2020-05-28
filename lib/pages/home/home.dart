@@ -8,10 +8,6 @@ import 'staff.dart';
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    int activeManagement = 10;
-    int leaveManagement = 2;
-    int activeEmployees = 100;
-    int leaveEmployees = 10;
     return ReusableScreen(
       propic: 'dummypropic.png',
       appBarTitle: 'Dashboard',
@@ -34,54 +30,62 @@ class Home extends StatelessWidget {
                   },
                   leading: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Icon(Icons.business_center),
+                    child: Icon(Icons.business_center,),
                   ),
-                  title: Text('Management'),
-                  subtitle:Text('Active : $activeManagement \nLeave : $leaveManagement'),
+                  title: Text('Staff'),
+                  subtitle:Text('check staff activity'),
                 ),
               ),
-              Card(
-                child: ListTile(
-                  contentPadding: EdgeInsets.all(10.0),
-                  onTap: (){
-                    Navigator.push(context,new MaterialPageRoute(
-                        builder: (context)=>
-                        new ViewStaff())
-                    );
-                  },
-                  leading: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Icon(Icons.people),
-                  ),
-                  title: Text('Employees'),
-                  subtitle:Text('Active : $activeEmployees \nLeave : $leaveEmployees'),
-                ),
-              ),
+//              Card(
+//                child: ListTile(
+//                  contentPadding: EdgeInsets.all(10.0),
+//                  onTap: (){
+//                    Navigator.push(context,new MaterialPageRoute(
+//                        builder: (context)=>
+//                        new ViewStaff())
+//                    );
+//                  },
+//                  leading: Padding(
+//                    padding: const EdgeInsets.all(8.0),
+//                    child: Icon(Icons.people),
+//                  ),
+//                  title: Text('Employees'),
+//                  subtitle:Text('Active : $activeEmployees \nLeave : $leaveEmployees'),
+//                ),
+//              ),
             ],
           )),
           SizedBox(height: 20.0,),
           Card(
             child: ListTile(
+              contentPadding: EdgeInsets.all(10.0),
               onTap:  (){
                 Navigator.push(context,new MaterialPageRoute(
                     builder: (context)=>
                     new Sections())
                 );
               },
-              leading:Icon(Icons.map,size: 50.0,),
+              leading:Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Icon(Icons.map,),
+              ),
               title: Text('View Sections'),
               subtitle: Text('Rooms,Restaurent,etc.'),
             ),
           ),
           Card(
             child: ListTile(
+              contentPadding: EdgeInsets.all(10.0),
               onTap:  (){
                 Navigator.push(context,new MaterialPageRoute(
                     builder: (context)=>
                     new ViewEvent())
                 );
               },
-              leading:Icon(Icons.event,size: 50.0,),
+              leading:Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Icon(Icons.event,),
+              ),
               title: Text('View Events'),
               subtitle: Text('Pending'),
             ),

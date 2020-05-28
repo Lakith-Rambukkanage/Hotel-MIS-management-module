@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/custom_widgets/screen.dart';
+import 'package:flutter_learn/custom_widgets/send_notification_form.dart';
 import 'package:flutter_learn/models/user.dart';
 import 'package:flutter_learn/services/database.dart';
 import 'package:flutter_learn/shared/loading.dart';
+import 'package:provider/provider.dart';
 
 class StaffProfile extends StatelessWidget {
   final String uid;
@@ -13,7 +15,20 @@ class StaffProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<User>(context);
 
+
+    void _showSendPanel(String senderID,String recID,){
+      showDialog(context: context, builder: (context){
+        return Center(
+          child: Container(
+            height: 450.0,
+            padding: EdgeInsets.all(30.0),
+            child:SendNotificationForm(senderID:senderID ,recID:recID ,),
+          ),
+        );
+      });
+    }
     return ReusableScreen(
       appBarTitle: 'Staff Profile', 
       propic: 'dummypropic.png',
@@ -97,9 +112,9 @@ class StaffProfile extends StatelessWidget {
                       Row(
                         children: <Widget>[
                           FlatButton.icon(
-                            onPressed: (){},
+                            onPressed: ()=>_showSendPanel(user.uid,userData.uid,),
                             icon: Icon(Icons.message,color: Colors.green,),
-                            label: Text('Send Instruction'),
+                            label: Text('Send Message'),
                           ),
                           FlatButton.icon(
                             onPressed: (){},

@@ -10,7 +10,7 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   //const job titles TODO: change accordingly
-  final List<String> jobTitleList = ['Senior Manager','Assistant Manager', 'Head Chef','Employee'];
+  final List<String> jobTitleList = ['Senior Manager','Assistant Manager', 'Head Chef'];
 
   //text field state TODO: change input fields
   String name = '';
@@ -128,7 +128,6 @@ class _RegisterState extends State<Register> {
                         TextFormField(
                           validator: (val) =>val.isEmpty? 'Enter a Password For Your Account':null,
                           onChanged: (val){
-                            print(val);
                             setState( () => password = val );
                           },
                           obscureText: true,
