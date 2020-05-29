@@ -117,7 +117,9 @@ class StaffProfile extends StatelessWidget {
                             label: Text('Send Message'),
                           ),
                           FlatButton.icon(
-                            onPressed: (){},
+                            onPressed:  () {
+                              showDisableDialog(context, uid);
+                            },
                             icon: Icon(Icons.block,color: Colors.red,),
                             label: Text('Disable'),
                           ),
@@ -135,6 +137,47 @@ class StaffProfile extends StatelessWidget {
         ),
       ], 
       )
+    );
+  }
+  showDisableDialog(BuildContext context,String uid) {
+
+    // set up the buttons
+    Widget restaurantButton = FlatButton(
+      child: Text("Cancel"),
+      onPressed:  () {
+          Navigator.pop(context);
+      },
+    );
+    Widget roomsButton = FlatButton(
+      child: Text("Confirm"),
+      onPressed:  () async{
+        try {
+          Navigator.pop(context);
+          await DatabaseService().staffSectionChange(uid:uid,section:'none',userEnabled: false);
+          Navigator.pop(context);
+        } catch (e) {
+          print('e.toString()');
+          print(e.toString());
+        }
+      },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      //title: Text("Respond to Notification"),
+      title: Center(child: Text("Select Section")),
+      actions: [
+        Center(child: restaurantButton),
+        Center(child: roomsButton),
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
     );
   }
 }

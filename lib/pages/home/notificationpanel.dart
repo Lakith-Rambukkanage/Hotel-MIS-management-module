@@ -17,19 +17,20 @@ class NotificationPanel extends StatelessWidget {
           children: <Widget>[
             Card(
               child: ListTile(
+                trailing: Icon(Icons.business),
+                title: Text('Sections Alerts'),
+              ),
+            ),
+            NotificationListSection(),
+            SizedBox(height: 8.0,),
+            Card(
+              child: ListTile(
                 trailing: Icon(Icons.call_received),
                 title: Text('Received'),
               ),
             ),
             NotificationList(),
             SizedBox(height: 8.0,),
-            Card(
-              child: ListTile(
-                trailing: Icon(Icons.business),
-                title: Text('Sections Alerts'),
-              ),
-            ),
-            NotificationListSection(),
             Card(
               child: ListTile(
                 trailing: Icon(Icons.send),

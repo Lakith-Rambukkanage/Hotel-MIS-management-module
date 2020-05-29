@@ -155,61 +155,8 @@ class Sections extends StatelessWidget {
                 );
               },
             ),
-          ),
-          Container(
-            height: 165.0,
-            child: GridView.count(
-              primary: false,
-              padding: const EdgeInsets.all(5),
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
-              crossAxisCount: 2,
-              children: <Widget>[
-                Container(
-                  padding: const EdgeInsets.all(8),
-                  child: ListTile(
-                    title: Container(
-                      decoration: new BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(10.0)),
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text('East Hall',textAlign: TextAlign.center,),
-                    ),
-                    //subtitle: Text('View room Occupance'),
-                    onTap: (){
-                      Navigator.push(context,new MaterialPageRoute(
-                          builder: (context)=>
-                          new Restaurant())
-                      );
-                    },
-                  ),
-                  //color: Colors.white,
-                  decoration: BoxDecoration(image:  DecorationImage(image: AssetImage('assets/hall1.PNG'),fit: BoxFit.fitHeight)),
-                ),
-                Container(
-                  padding: const EdgeInsets.all(8),
-                  child: ListTile(
-                    title: Container(
-                      decoration: new BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(10.0)),
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text('West Hall',textAlign: TextAlign.center,),
-                    ),
-                    //subtitle: Text('View room Occupance'),
-                    onTap: (){
-                      Navigator.push(context,new MaterialPageRoute(
-                          builder: (context)=>
-                          new Restaurant())
-                      );
-                    },
-                  ),
-                  //color: Colors.white,
-                  decoration: BoxDecoration(image:  DecorationImage(image: AssetImage('assets/hall2.PNG'),fit: BoxFit.fitHeight)),
-                ),
-              ],
-            ),
-          ),
-                  // TODO : in each section show updates from manager etc. 
-                  // TODO : allow broadcast to all employees within section
-                  // TODO : add halls
-                ],
+          ), // TODO : in each section show updates from manager etc. // TODO : allow broadcast to all employees within section // TODO : add halls
+        ],
     )
     );
   }

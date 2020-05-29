@@ -3,7 +3,7 @@ import 'package:flutter_learn/models/user.dart';
 import 'package:flutter_learn/pages/authenticate/loading.dart';
 import 'package:flutter_learn/pages/authenticate/login.dart';
 import 'package:flutter_learn/pages/authenticate/test.dart';
-import 'package:flutter_learn/pages/home/calendar.dart';
+import 'package:flutter_learn/pages/home/calendar_and_events.dart';
 import 'package:flutter_learn/pages/home/home.dart';
 import 'package:flutter_learn/pages/home/management.dart';
 import 'package:flutter_learn/pages/home/restaurant.dart';
@@ -38,7 +38,6 @@ class RootApp extends StatelessWidget{
             '/calendar' : (context) => Calendar(),
             '/restaurant' : (context) => Restaurant(),
             '/staff/management' : (context) => Management(),
-            '/test' : (context) => Test(),
             //'/home' : (context) => Home(),
             //front end done : Loading, Login, section, staff, calendar, profile,
             //add  event, settings, notification etc.

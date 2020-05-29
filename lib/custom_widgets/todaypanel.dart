@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_learn/pages/home/calendar.dart';
+import 'package:flutter_learn/pages/home/calendar_and_events.dart';
 
 import 'calendaricon.dart';
 
@@ -25,7 +25,7 @@ class TodayPanel extends StatelessWidget {
           date :dateTime.day.toString()
             ),
                     title: Text('Today'),
-                    subtitle:Text('Wedding hall-1 @3.00 pm'),
+                    subtitle:Text('view Calendar and Events'),
               ),
         ],
       ),

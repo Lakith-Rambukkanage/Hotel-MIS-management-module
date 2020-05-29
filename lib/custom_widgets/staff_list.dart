@@ -14,18 +14,26 @@ class _StaffListState extends State<StaffList> {
   Widget build(BuildContext context) {
     final staffList = Provider.of<List<Staff>>(context);
     if (staffList!=null) {
+      List<Staff> enabledList = staffList.where((s)=>(s.userEnabled)).toList();
+      if(enabledList.isNotEmpty){
       return Expanded(
         child: ListView.builder(
-          itemCount: staffList.length,
+          itemCount: enabledList.length,
           itemBuilder: (context, index) {
-          if (staffList[index].jobTitle!='Employee') {
-            return EmployeeCard(staffMember: staffList[index]);
-          }else{
-            return Container();
-          }
+            return EmployeeCard(staffMember: enabledList[index]);
           },
         ),
       );
+      }else{
+        return Card(
+          child: ListTile(
+            contentPadding: EdgeInsets.all(10.0),
+            leading: Icon(Icons.warning),
+            title: Text('No Accounts to show'),
+            subtitle: Text('Please check Account Requests'),
+          ),
+        );
+      }
     }else{
       print('Loading - staff list');
       return Loading();

@@ -1,6 +1,7 @@
 import 'dart:collection';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_learn/models/event.dart';
 import 'package:flutter_learn/models/notification.dart';
 import 'package:flutter_learn/models/restaurentmodels.dart';
 import 'package:flutter_learn/models/room.dart';
@@ -22,6 +23,7 @@ class DatabaseService {
   final CollectionReference specialOffersCollection = Firestore.instance.collection("special-offers");
   final CollectionReference itemsCollection = Firestore.instance.collection("items");
   final CollectionReference notificationsCollection = Firestore.instance.collection("notifications");
+  final CollectionReference eventsCollection = Firestore.instance.collection("events");
 
   Future updateUserData(String name,String email,String mobileNo, String jobTitle, String section,bool activeStatus,bool userEnabled) async {
     return await staffUsersCollection.document(uid).setData({
@@ -116,6 +118,14 @@ class DatabaseService {
           );
         }).toList();
   }
+
+  Future staffSectionChange({String uid,String section,bool userEnabled}) async {
+    return await staffUsersCollection.document(uid).updateData({
+      'section' : section,
+      'userEnabled' : userEnabled,
+    });
+  }
+
   //Rooms database Requests
 
   //to get room detail list snapshots
@@ -373,4 +383,69 @@ class DatabaseService {
     });
   }
 
+  //events Handling
+  //to get events list snapshots by date
+  Stream<List<EventModel>> getEventsListByDate(DateTime date){
+    return eventsCollection.where('eventDate', isEqualTo: Timestamp.fromDate(date)).snapshots().map(_eventsListFromSnapshot);
+  }
+
+  //to get events list snapshots by date
+  Stream<List<EventModel>> getEventsList(){
+    return eventsCollection.snapshots().map(_eventsListFromSnapshot);
+  }
+  //to get events list snapshots upcoming
+  Stream<List<EventModel>> getUpcomingEventsList(){
+    DateTime date= DateTime.now();//todo:check greater than add and subtract and check for yesterday today and tom
+    return eventsCollection.where('eventDate', isGreaterThanOrEqualTo: Timestamp.fromDate(date)).snapshots().map(_eventsListFromSnapshot);
+  }
+  //to convert events in the list in to event model
+  List<EventModel> _eventsListFromSnapshot(QuerySnapshot snapshot){
+    return snapshot.documents.map((doc){
+      DateTime date = doc.data['eventDate'].toDate()??'';
+      return EventModel(
+        docid: doc.documentID,
+        eventName:doc.data['eventName']??'',
+        eventDate :date??'',
+        hall: doc.data['hall']??'',
+        timeSlot: doc.data['timeSlot']??0,
+        contactNo: doc.data['contactNo']??'',
+        customerName: doc.data['customerName']??'',
+        email: doc.data['email']??'',
+      );
+    }).toList();
+  }
+
+  Future addEvent(EventModel event) async {
+    Timestamp timestamp = Timestamp.fromDate(event.eventDate);
+    return await eventsCollection.add({
+      'eventName' : event.eventName,
+      'hall' : event.hall,
+      'email' : event.email,
+      'customerName' : event.customerName,
+      'contactNo' : event.contactNo,
+      'eventDate' : timestamp,
+      'timeSlot' : event.timeSlot,
+    });
+  }
+  Future deleteEvent(String docid)async{
+    return await eventsCollection.document(docid).delete();
+  }
+  Stream<EventModel> get eventById{
+    return eventsCollection.document(docid).snapshots()
+        .map(_eventFromSnapShot);
+  }
+
+  EventModel _eventFromSnapShot(DocumentSnapshot snapshot) {
+    DateTime date = snapshot.data['eventDate'].toDate()??'';
+    return EventModel(
+      docid: snapshot.documentID,
+      eventName:snapshot.data['eventName']??'',
+      eventDate :date??'',
+      hall: snapshot.data['hall']??'',
+      timeSlot: snapshot.data['timeSlot']??0,
+      contactNo: snapshot.data['contactNo']??'',
+      customerName: snapshot.data['customerName']??'',
+      email: snapshot.data['email']??'',
+    );
+  }
 }

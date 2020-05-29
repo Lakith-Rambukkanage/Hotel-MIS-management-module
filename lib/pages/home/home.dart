@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/custom_widgets/screen.dart';
 import 'package:flutter_learn/custom_widgets/todaypanel.dart';
+import 'package:flutter_learn/pages/home/calendar_and_events.dart';
+import 'package:flutter_learn/pages/home/event_shedule.dart';
 import 'package:flutter_learn/pages/home/viewevent.dart';
 import 'viewsections.dart';
 import 'staff.dart';
@@ -33,7 +35,7 @@ class Home extends StatelessWidget {
                     child: Icon(Icons.business_center,),
                   ),
                   title: Text('Staff'),
-                  subtitle:Text('check staff activity'),
+                  subtitle:Text('view staff available'),
                 ),
               ),
 //              Card(
@@ -70,7 +72,7 @@ class Home extends StatelessWidget {
                 child: Icon(Icons.map,),
               ),
               title: Text('View Sections'),
-              subtitle: Text('Rooms,Restaurent,etc.'),
+              subtitle: Text('Rooms, Restaurant and Halls'),
             ),
           ),
           Card(
@@ -79,15 +81,15 @@ class Home extends StatelessWidget {
               onTap:  (){
                 Navigator.push(context,new MaterialPageRoute(
                     builder: (context)=>
-                    new ViewEvent())
+                    new SheduleEvent())
                 );
               },
               leading:Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Icon(Icons.event,),
               ),
-              title: Text('View Events'),
-              subtitle: Text('Pending'),
+              title: Text('Schedule Event'),
+              subtitle: Text('Add new event to calendar'),
             ),
           ),
                 ]

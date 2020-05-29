@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_learn/services/auth.dart';
 
 class Register extends StatefulWidget {
@@ -10,7 +11,7 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   //const job titles TODO: change accordingly
-  final List<String> jobTitleList = ['Senior Manager','Assistant Manager', 'Head Chef'];
+  final List<String> jobTitleList = ['Senior Manager','Assistant Manager'];
 
   //text field state TODO: change input fields
   String name = '';
@@ -89,17 +90,22 @@ class _RegisterState extends State<Register> {
                         ),
                         SizedBox(height: 10.0,),
                         TextFormField(
-                          validator: (val) => val.length!=10? 'Enter valid Mobile No':null,
-                          onChanged: (val){
-                            setState( () => mobileNo = val );
-                          },
-                          decoration: const InputDecoration(
-                            border: UnderlineInputBorder(),
-                            filled: true,
-                            fillColor: Colors.white,
-                            labelText: 'Mobile No',
-                            labelStyle: TextStyle(color: Colors.grey,),
-                          ),
+                          //controller: _controller,
+                            onChanged:(val){
+                              setState( () => mobileNo = val );
+                            },
+                            validator: (val) => val.length!=10? 'Enter valid Contact No':null,
+                            keyboardType: TextInputType.number,
+                            inputFormatters: <TextInputFormatter>[
+                              WhitelistingTextInputFormatter.digitsOnly
+                            ],
+                            decoration: InputDecoration(
+                              border: UnderlineInputBorder(),
+                              filled: true,
+                              fillColor: Colors.white,
+                              labelText: 'Contact No',
+                              labelStyle: TextStyle(color: Colors.grey,),
+                            )
                         ),
                         SizedBox(height: 10.0,),
                         DropdownButtonFormField(

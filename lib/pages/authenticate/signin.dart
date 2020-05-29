@@ -95,8 +95,6 @@ class _SignInState extends State<SignIn> {
                           onPressed: () async {
                             print ('sign in clicked');
                             if (_formkey.currentState.validate()){
-                              print(email);
-                              print(password);
                               dynamic result = await _authService.signInWithEmailAndPassword(email, password);
                               if (result==null){
                                 setState(() {error = 'Please Enter Valid Details and Check Connectivity';});

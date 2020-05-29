@@ -144,17 +144,6 @@ class ReusableScreen extends StatelessWidget{
                     },
                   ),
                   ListTile(
-                    title: Text('Restaurent'),
-                    trailing: Icon(Icons.restaurant, color: Colors.cyan,),
-                    onTap: () {
-                      // Update the state of the app
-                      // ...
-                      // Then close the drawer
-                      Navigator.pop(context);
-                      Navigator.pushNamed(context,'/restaurant');
-                    },
-                  ),
-                  ListTile(
                     contentPadding: EdgeInsets.all(10.0),
                     subtitle: FlatButton.icon(
                         onPressed: ()async{
