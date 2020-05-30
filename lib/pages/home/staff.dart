@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_learn/custom_widgets/screen.dart';
 import 'package:flutter_learn/custom_widgets/send_notification_form.dart';
 import 'package:flutter_learn/pages/home/accountrequests.dart';
-import 'package:flutter_learn/pages/home/employees.dart';
 import 'package:flutter_learn/pages/home/management.dart';
 
 class ViewStaff extends StatelessWidget {
@@ -42,23 +41,6 @@ class ViewStaff extends StatelessWidget {
               subtitle:Text('View Management Staff'),
             ),
           ),
-//          Card(
-//            child: ListTile(
-//              contentPadding: EdgeInsets.all(10.0),
-//              onTap: (){
-//                Navigator.push(context,new MaterialPageRoute(
-//                    builder: (context)=>
-//                    new Employees())
-//                );
-//              },
-//              leading: Padding(
-//                padding: const EdgeInsets.all(8.0),
-//                child: Icon(Icons.business_center),
-//              ),
-//              title: Text('Employees'),
-//              subtitle:Text('Active : $activeEmployees \nLeave : $leaveEmployees'),
-//            ),
-//          ),
         SizedBox(height: 20.0,),
         //TODO: On tap do the following
         Card(
@@ -73,7 +55,7 @@ class ViewStaff extends StatelessWidget {
               onTap: ()=>_showSendPanel(),
             ),
         ),
-          SizedBox(height: 10.0,),
+          SizedBox(height: 20.0,),
           Card(
           child: ListTile(
             contentPadding: EdgeInsets.all(10.0),

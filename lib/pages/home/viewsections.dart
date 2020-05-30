@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/custom_widgets/screen.dart';
-import 'package:flutter_learn/pages/home/restaurant.dart';
 import 'package:flutter_learn/pages/home/rooms_normal.dart';
 import 'package:flutter_learn/pages/home/rooms_seaside.dart';
+import 'package:flutter_learn/pages/home/viewhalls.dart';
 import 'package:flutter_learn/pages/home/vieworders.dart';
 import 'package:flutter_learn/pages/home/viewrestaurant.dart';
 import 'package:flutter_learn/pages/home/viewrooms.dart';
@@ -20,8 +20,9 @@ class Sections extends StatelessWidget {
         children : <Widget>[
           Card(
             child: ListTile(
-              leading: Text('Rooms',style: TextStyle(fontSize: 20.0),textAlign: TextAlign.center,),
-              trailing: Icon(Icons.airline_seat_individual_suite,color: Colors.pink,),
+              title: Text('Rooms'),
+              subtitle: Text('Room Packages and availability'),
+              trailing: Icon(Icons.airline_seat_individual_suite,color: Colors.cyan,),
               onTap: (){
                 Navigator.push(context,new MaterialPageRoute(
                     builder: (context)=>
@@ -83,8 +84,9 @@ class Sections extends StatelessWidget {
           //Restaurant kitchen and restaurant
           Card(
             child: ListTile(
-              leading: Text('Restaurant',style: TextStyle(fontSize: 20.0),textAlign: TextAlign.center,),
-              trailing: Icon(Icons.restaurant,color: Colors.pink,),
+              title: Text('Restaurant'),
+              subtitle: Text('Offers, kitchen and dining area'),
+              trailing: Icon(Icons.restaurant,color: Colors.cyan,),
               onTap: (){
                 Navigator.push(context,new MaterialPageRoute(
                     builder: (context)=>
@@ -146,12 +148,13 @@ class Sections extends StatelessWidget {
                   //Halls
           Card(
             child: ListTile(
-              leading: Text('Halls',style: TextStyle(fontSize: 20.0),textAlign: TextAlign.center,),
-              trailing: Icon(Icons.business,color: Colors.pink,),
+              title: Text('Halls',),
+              subtitle: Text('Upcoming events'),
+              trailing: Icon(Icons.business,color: Colors.cyan,),
               onTap: (){
                 Navigator.push(context,new MaterialPageRoute(
                     builder: (context)=>
-                    new Restaurant())
+                    new ViewHalls())
                 );
               },
             ),

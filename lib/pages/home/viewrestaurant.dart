@@ -32,19 +32,15 @@ class ViewRestaurant extends StatelessWidget {
                             Card(
                               child: ListTile(
                                 leading: Text('Offers',style: TextStyle(fontSize: 20.0),textAlign: TextAlign.center,),
-                                trailing: Column(
-                                  children: <Widget>[
-                                    FlatButton.icon(
-                                      icon : Icon(Icons.fastfood,color: Colors.green,),
-                                      label:Text('Add Offer +'),
-                                      onPressed: (){
-                                        Navigator.push(context,new MaterialPageRoute(
-                                            builder: (context)=>
-                                            new AddOfferItems())
-                                        );
-                                      },
-                                    )
-                                  ],
+                                trailing: FlatButton.icon(
+                                  icon : Icon(Icons.fastfood,color: Colors.green,),
+                                  label:Text('Add Offer +'),
+                                  onPressed: (){
+                                    Navigator.push(context,new MaterialPageRoute(
+                                        builder: (context)=>
+                                        new AddOfferItems())
+                                    );
+                                  },
                                 ),
                               ),
                             ),

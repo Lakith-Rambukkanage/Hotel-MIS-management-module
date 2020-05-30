@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_learn/custom_widgets/calendaricon.dart';
-import 'package:flutter_learn/custom_widgets/eventCard.dart';
 import 'package:flutter_learn/custom_widgets/screen.dart';
 import 'package:flutter_learn/models/event.dart';
-import 'package:flutter_learn/pages/home/checkevent.dart';
+import 'package:flutter_learn/pages/home/event_reschedule.dart';
 import 'package:flutter_learn/services/database.dart';
 import 'package:flutter_learn/shared/loading.dart';
 import 'package:intl/intl.dart';
@@ -89,9 +87,12 @@ class ViewEvent extends StatelessWidget {
                       FlatButton.icon(
                         icon: Icon(Icons.event, color: Colors.cyan,),
                           label: Text('Reschedule'),
-                          onPressed: () async {
-
-                          }
+                        onPressed: (){
+                          Navigator.push(context,new MaterialPageRoute(
+                              builder: (context)=>
+                              new RescheduleEvent(docid: docid,eventName: e.eventName,))
+                          );
+                        },
                       ),
                       FlatButton.icon(
                           icon: Icon(Icons.delete, color: Colors.red,),

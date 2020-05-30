@@ -13,11 +13,12 @@ class SheduleEvent extends StatefulWidget {
 }
 
 class _SheduleEventState extends State<SheduleEvent> {
-
-  DateTime selectedDate = DateTime.now();
+  static DateTime temp = DateTime.now();
+  DateTime selectedDate = new DateTime(temp.year,temp.month,temp.day)??DateTime.now();
   var formatter = new DateFormat('yyyy-MM-dd');
   //date picker
   Future<Null> _selectDate(BuildContext context) async {
+    print(selectedDate);
     final DateTime picked = await showDatePicker(
         context: context,
         initialDate: selectedDate,
@@ -343,6 +344,8 @@ class _EventFormState extends State<EventForm> {
                                 }else{
                                   Navigator.pop(context);
                                   Navigator.pop(context);
+                                  String body = (eventName!=null&&formattedDate!=null)?'\' $eventName\' was added to the calendar on date $formattedDate':'Event was added to the calendar';
+                                  await DatabaseService().sectionNotification(body, 'Halls');
                                 }
                             }
                           }

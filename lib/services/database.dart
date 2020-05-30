@@ -1,5 +1,3 @@
-import 'dart:collection';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_learn/models/event.dart';
 import 'package:flutter_learn/models/notification.dart';
@@ -395,8 +393,9 @@ class DatabaseService {
   }
   //to get events list snapshots upcoming
   Stream<List<EventModel>> getUpcomingEventsList(){
-    DateTime date= DateTime.now();//todo:check greater than add and subtract and check for yesterday today and tom
-    return eventsCollection.where('eventDate', isGreaterThanOrEqualTo: Timestamp.fromDate(date)).snapshots().map(_eventsListFromSnapshot);
+    DateTime beforeDate= DateTime.now().subtract(Duration(days: 2));//todo:check greater than add and subtract and check for yesterday today and tom
+    DateTime afterDate= DateTime.now().add(Duration(days: 1));//
+    return eventsCollection.where('eventDate', isGreaterThanOrEqualTo: Timestamp.fromDate(beforeDate)).where('eventDate', isLessThanOrEqualTo: Timestamp.fromDate(afterDate)).snapshots().map(_eventsListFromSnapshot);
   }
   //to convert events in the list in to event model
   List<EventModel> _eventsListFromSnapshot(QuerySnapshot snapshot){
@@ -448,4 +447,14 @@ class DatabaseService {
       email: snapshot.data['email']??'',
     );
   }
+
+  Future rescheduleEvent(String docid,DateTime date,String hall,int timeSlot) async {
+    Timestamp timestamp = Timestamp.fromDate(date);
+    return await eventsCollection.document(docid).updateData({
+      'eventDate' : timestamp??'',
+      'hall':hall,
+      'timeSlot':timeSlot,
+    });
+  }
+
 }

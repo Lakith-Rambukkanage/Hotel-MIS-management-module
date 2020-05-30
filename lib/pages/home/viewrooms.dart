@@ -53,7 +53,7 @@ class ViewRooms extends StatelessWidget {
               Card(
                 child: ListTile(
                   leading: Text('Sea Side Rooms',style: TextStyle(fontSize: 20.0),textAlign: TextAlign.center,),
-                  trailing: Icon(Icons.beach_access,color: Colors.pink,),
+                  trailing: Icon(Icons.beach_access,color: Colors.cyan,),
                 ),
               ),
               SeasideRoomsPanel(),
