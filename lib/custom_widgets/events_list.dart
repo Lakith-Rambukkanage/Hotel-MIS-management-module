@@ -17,14 +17,22 @@ class _EventsListState extends State<EventsList> {
     final eventsList = Provider.of<List<EventModel>>(context);
     if (eventsList!=null) {
       List<EventModel> filter = eventsList.where((e)=>(e.eventDate==today)).toList();
-      return Expanded(
-        child: ListView.builder(
-          itemCount: filter.length,
-          itemBuilder: (context, index) {
+      if(filter.isNotEmpty) {
+        return Expanded(
+          child: ListView.builder(
+            itemCount: filter.length,
+            itemBuilder: (context, index) {
               return EventCard(event: filter[index]);
-          },
-        ),
-      );
+            },
+          ),
+        );
+      }else{
+        return Card(
+          child: ListTile(
+            title: Text('No Events to show'),
+          ),
+        );
+      }
     }else{
       print('Loading - Order list');
       return Loading();
@@ -48,7 +56,8 @@ class _EventsListUpcomingState extends State<EventsListUpcoming> {
     final eventsList = Provider.of<List<EventModel>>(context);
     if (eventsList!=null) {
       List<EventModel> filter = eventsList.where((e)=>(e.eventDate==today)).toList();
-      return Expanded(
+      if (filter.isNotEmpty) {
+        return Expanded(
         child: ListView.builder(
           itemCount: filter.length,
           itemBuilder: (context, index) {
@@ -56,6 +65,13 @@ class _EventsListUpcomingState extends State<EventsListUpcoming> {
           },
         ),
       );
+      }else{
+        return Card(
+          child: ListTile(
+            title: Text('No Events to show'),
+          ),
+        );
+      }
     }else{
       print('Loading - Order list');
       return Loading();
@@ -80,7 +96,8 @@ class _EventsListRecentState extends State<EventsListRecent> {
     final eventsList = Provider.of<List<EventModel>>(context);
     if (eventsList!=null) {
       List<EventModel> filter = eventsList.where((e)=>(e.eventDate==today)).toList();
-      return Expanded(
+      if (filter.isNotEmpty) {
+        return Expanded(
         child: ListView.builder(
           itemCount: filter.length,
           itemBuilder: (context, index) {
@@ -88,6 +105,13 @@ class _EventsListRecentState extends State<EventsListRecent> {
           },
         ),
       );
+    }else{
+      return Card(
+        child: ListTile(
+          title: Text('No Events to show'),
+        ),
+      );
+    }
     }else{
       print('Loading - Order list');
       return Loading();

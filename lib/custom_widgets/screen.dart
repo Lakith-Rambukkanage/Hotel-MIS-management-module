@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/models/user.dart';
-import 'package:flutter_learn/pages/authenticate/loading.dart';
 import 'package:flutter_learn/pages/home/notificationpanel.dart';
 import 'package:flutter_learn/pages/home/profile.dart';
 import 'package:flutter_learn/services/auth.dart';
+import 'package:flutter_learn/shared/loading.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_learn/services/database.dart';
 

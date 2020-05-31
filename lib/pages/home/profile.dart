@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_learn/custom_widgets/edit_profile_form.dart';
 import 'package:flutter_learn/custom_widgets/screen.dart';
 import 'package:flutter_learn/models/user.dart';
-import 'package:flutter_learn/pages/authenticate/loading.dart';
 import 'package:flutter_learn/services/database.dart';
+import 'package:flutter_learn/shared/loading.dart';
 import 'package:provider/provider.dart';
 
 class Profile extends StatelessWidget {

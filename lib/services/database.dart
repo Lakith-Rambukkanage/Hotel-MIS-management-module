@@ -54,8 +54,28 @@ class DatabaseService {
 
 
    UserData _userDataFromSnapShot(DocumentSnapshot snapshot) {
+    Map d = snapshot.data??{};
     return UserData(
-      uid: uid,
+      uid: snapshot.documentID??'',
+      email: d['email']??'',
+      mobileNo: d['mobileNo']??'',
+      name: d['name']??'',
+      jobTitle: d['jobTitle'] ??'',
+      section: d['section'] ??'',
+      activeStatus: d['activeStatus']??false,
+      userEnabled: d['userEnabled']??false,
+    );
+  }
+
+  //staff pages database requests
+  Stream<Staff> getStaffUserData(String uid){
+    return staffUsersCollection.document(uid).snapshots()
+        .map(_staffDataFromSnapShot);
+  }
+
+  Staff _staffDataFromSnapShot(DocumentSnapshot snapshot) {
+    return Staff(
+      uid: snapshot.documentID??'',
       email: snapshot.data['email']??'',
       mobileNo: snapshot.data['mobileNo']??'',
       name: snapshot.data['name']??'',
@@ -65,36 +85,6 @@ class DatabaseService {
       userEnabled: snapshot.data['userEnabled']??false,
     );
   }
-
-  //staff pages database requests
-//  UserData getUserDataByID(String uid){
-//    UserData u;
-//    staffUsersCollection.document(uid).get().then((snap){
-//      if (snap.exists){
-//      u= UserData(
-//        uid:snap.documentID ,
-//        name: snap.data['name']??'',
-//        email: snap.data['email']??'',
-//        mobileNo: snap.data['mobileNo']??'',
-//        userEnabled: snap.data['userEnabled']??false,
-//        activeStatus: snap.data['activeStatus']??false,
-//        jobTitle: snap.data['jobTitle']??'',
-//        section: snap.data['section']??'',
-//      );}else{
-//        u= UserData(
-//          uid:'' ,
-//          name: 'Error retrieving User',
-//          email: '',
-//          mobileNo: '',
-//          userEnabled: false,
-//          activeStatus: false,
-//          jobTitle: '',
-//          section: '',
-//        );
-//      }
-//    });
-//    return u;
-//  }
 
 
   //to get stafflist snapshots

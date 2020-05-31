@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/custom_widgets/screen.dart';
 import 'package:flutter_learn/custom_widgets/send_notification_form.dart';
+import 'package:flutter_learn/models/staff.dart';
 import 'package:flutter_learn/models/user.dart';
 import 'package:flutter_learn/services/database.dart';
 import 'package:flutter_learn/shared/loading.dart';
@@ -35,12 +36,12 @@ class StaffProfile extends StatelessWidget {
         child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children : <Widget>[
-        StreamBuilder<UserData>(
-          stream: DatabaseService(uid: this.uid).userData,
+        StreamBuilder<Staff>(
+          stream: DatabaseService().getStaffUserData(uid),
           builder: (context, snapshot) {
             if(snapshot.hasData){
 
-              UserData userData = snapshot.data;
+              Staff userData = snapshot.data;
               String uid = this.uid;
               String status;
               Color c;
@@ -165,7 +166,7 @@ class StaffProfile extends StatelessWidget {
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       //title: Text("Respond to Notification"),
-      title: Center(child: Text("Select Section")),
+      title: Center(child: Text("Are you Sure?")),
       actions: [
         Center(child: restaurantButton),
         Center(child: roomsButton),
