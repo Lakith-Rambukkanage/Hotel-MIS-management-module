@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_learn/custom_widgets/events_list.dart';
 import 'package:flutter_learn/custom_widgets/screen.dart';
 import 'package:flutter_learn/models/event.dart';
+import 'package:flutter_learn/models/user.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_learn/services/database.dart';
@@ -28,19 +29,35 @@ class ViewHalls extends StatelessWidget {
             //color: Colors.white.withOpacity(0.5),
             height: 600.0,child: Column(
             children: <Widget>[
-              Card(
-                child: ListTile(
-                  contentPadding: EdgeInsets.all(10.0),
-                  trailing:FlatButton.icon(
-                    onPressed:  (){
-                      Navigator.push(context,new MaterialPageRoute(
-                          builder: (context)=>
-                          new SheduleEvent())
-                      );
-                    },
-                    icon: Icon(Icons.event,color: Colors.green,),
-                    label: Text('Schedule Event +'),),
-                  title: Text('Halls'),
+              Builder(
+                builder: (context)=> Card(
+                  child: ListTile(
+                    contentPadding: EdgeInsets.all(10.0),
+                    trailing:FlatButton.icon(
+                      onPressed:  (){
+                        final userData = Provider.of<UserData>(context);
+                        if (userData!=null){
+                          if ((userData.jobTitle=='Senior Manager' ||userData.jobTitle=='Manager')&& (userData.section=='Halls'||userData.section=='Hotel' )) {
+                            Navigator.push(context,new MaterialPageRoute(
+                            builder: (context)=>
+                            new SheduleEvent())
+                            );
+                          }else{
+                            final snackBar = SnackBar(
+                              content: Text('Not Authorized!'),
+                              action: SnackBarAction(
+                                label: 'ok',
+                                onPressed: () {},
+                              ),
+                            );
+                            Scaffold.of(context).showSnackBar(snackBar);
+                          }
+                        }
+                      },
+                      icon: Icon(Icons.event,color: Colors.green,),
+                      label: Text('Schedule Event +'),),
+                    title: Text('Halls'),
+                  ),
                 ),
               ),
               Card(

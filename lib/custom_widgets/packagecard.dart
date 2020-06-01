@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/models/room.dart';
+import 'package:flutter_learn/models/user.dart';
+import 'package:provider/provider.dart';
 
 
 import 'edit_room_package.dart';
@@ -37,7 +39,27 @@ class PackageCard extends StatelessWidget {
       margin: EdgeInsets.all(5.0),
       child: ListTile(
         contentPadding: EdgeInsets.all(15.0),
-        onTap: ()=>_updateRoomPackages(docid: docid),
+        onTap: (){
+          final userData = Provider.of<UserData>(context);
+          if (userData!=null) {
+            if ((userData.jobTitle ==
+                'Senior Manager' ||
+                userData.jobTitle == 'Manager') &&
+                (userData.section == 'Restaurant' ||
+                    userData.section == 'Hotel')) {
+              _updateRoomPackages(docid: docid);
+            }else{
+              final snackBar = SnackBar(
+                content: Text('Not Authorized!'),
+                action: SnackBarAction(
+                  label: 'ok',
+                  onPressed: () {},
+                ),
+              );
+              Scaffold.of(context).showSnackBar(snackBar);
+            }
+          }
+        },
         trailing: Icon(Icons.edit,color: Colors.blue,),
         subtitle: Text('$type'),
         title: Column(

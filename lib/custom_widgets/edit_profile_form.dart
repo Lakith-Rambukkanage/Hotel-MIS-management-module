@@ -17,13 +17,9 @@ class _EditProfileState extends State<EditProfile> {
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<User>(context);
+    final user = Provider.of<UserData>(context);
     if (user!=null) {
-      return StreamBuilder<UserData>(
-          stream: DatabaseService(uid: user.uid).userData,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return Scaffold(
+      return Scaffold(
                 body: Container(
                   margin: EdgeInsets.all(30.0),
                   child: SingleChildScrollView(
@@ -36,7 +32,7 @@ class _EditProfileState extends State<EditProfile> {
                               fontSize: 20.0),),
                           SizedBox(height: 10.0,),
                           TextFormField(
-                            initialValue: _currentName ?? snapshot.data.name,
+                            initialValue: _currentName ?? user.name,
                             validator: (val) =>
                             val.isEmpty
                                 ? 'Enter Your Name'
@@ -57,7 +53,7 @@ class _EditProfileState extends State<EditProfile> {
                           SizedBox(height: 10.0,),
                           TextFormField(
                             //controller: _controller,
-                            initialValue: _currentMobileNo??snapshot.data.mobileNo,
+                            initialValue: _currentMobileNo??user.mobileNo,
                               onChanged:(val){
                                 setState( () => _currentMobileNo = val );
                               },
@@ -88,9 +84,9 @@ class _EditProfileState extends State<EditProfile> {
                                   await DatabaseService(uid: user.uid)
                                       .editUserData(
                                       username: _currentName ??
-                                          snapshot.data.name,
+                                          user.name,
                                       mobileNo: _currentMobileNo ??
-                                          snapshot.data.mobileNo);
+                                          user.mobileNo);
                                 }
                                 Navigator.pop(context);
                               }),
@@ -100,10 +96,6 @@ class _EditProfileState extends State<EditProfile> {
                   ),
                 ),
               );
-            } else {
-              return Loading();
-            }
-          });
     }else{
       return Loading();
     }

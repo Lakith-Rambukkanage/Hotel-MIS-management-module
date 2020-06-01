@@ -13,17 +13,13 @@ class _SeasideRoomsListState extends State<SeasideRoomsList> {
   @override
   Widget build(BuildContext context) {
     final roomList = Provider.of<List<RoomDetail>>(context);
-    //print(roomList);
     if (roomList!=null) {
+      List<RoomDetail>filter =roomList.where((r)=>(r.type=='Sea-View')).toList();
       return Expanded(
         child: ListView.builder(
-          itemCount: roomList.length,
+          itemCount: filter.length,
           itemBuilder: (context, index) {
-            if (roomList[index].type=='Sea-View') {
-              return RoomCard(room: roomList[index]);
-            }else{
-              return Container();
-            }
+              return RoomCard(room: filter[index]);
           },
         ),
       );

@@ -17,12 +17,15 @@ class EmployeeCardDisabled extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<User>(context);
+    final user = Provider.of<UserData>(context);
     String name = this.staffMember.name;
     String uid = this.staffMember.uid;
     bool click = true;
     if (uid==user.uid){
       name = 'You';
+      click=false;
+    }
+    if(user.jobTitle!='Manager'){
       click=false;
     }
     String jobTitle = this.staffMember.jobTitle;
@@ -120,7 +123,7 @@ class EmployeeCardDisabled extends StatelessWidget {
         Center(child: restaurantButton),
         Center(child: roomsButton),
         Center(child: hallsButton),
-        Center(child: hotelButton),
+        Center(child: hotelButton),//Todo: delete button
       ],
     );
 

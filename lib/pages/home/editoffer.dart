@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_learn/custom_widgets/itemcard.dart';
 import 'package:flutter_learn/custom_widgets/screen.dart';
 import 'package:flutter_learn/models/restaurentmodels.dart';
+import 'package:flutter_learn/models/user.dart';
 import 'package:flutter_learn/services/database.dart';
 import 'package:flutter_learn/shared/loading.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class EditOffer extends StatefulWidget {
   final Offer offer;
@@ -84,12 +86,37 @@ class _EditOfferState extends State<EditOffer> {
                 SizedBox(height: 10.0,),
                 Text('Sold : $sold',style: TextStyle(fontSize: 18.0),),
                 SizedBox(height: 10.0,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Text('Valid Till : $formattedDate',style: TextStyle(fontSize: 16.0,color: c),),
-                    IconButton(onPressed: () => _selectDate(context), icon: Icon(Icons.edit,color: Colors.cyan),),
-                  ],
+                Builder(
+                  builder: (context)=> Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text('Valid Till : $formattedDate',style: TextStyle(fontSize: 16.0,color: c),),
+                      IconButton(
+                        onPressed: ()  {
+                          final userData = Provider.of<UserData>(context);
+                          if (userData!=null) {
+                            if ((userData.jobTitle ==
+                                'Senior Manager' ||
+                                userData.jobTitle == 'Manager') &&
+                                (userData.section == 'Restaurant' ||
+                                    userData.section == 'Hotel')) {
+                              _selectDate(context);
+                            }else{
+                              final snackBar = SnackBar(
+                                content: Text('Not Authorized!'),
+                                action: SnackBarAction(
+                                  label: 'ok',
+                                  onPressed: () {},
+                                ),
+                              );
+                              Scaffold.of(context).showSnackBar(snackBar);
+                            }
+                          }
+                          },
+                        icon: Icon(Icons.edit,color: Colors.cyan),
+                      ),
+                    ],
+                  ),
                 ),
                 Text(dateError,textAlign: TextAlign.center, style: TextStyle(color: Colors.red),),
                 SizedBox(height: 10.0,),
@@ -115,10 +142,28 @@ class _EditOfferState extends State<EditOffer> {
                       }
                     }
                 ),
-                Center(child: FlatButton.icon(
-                    onPressed: ()=>showAlertDialog(context,offer.docid,offer.name),
-                    icon: Icon(Icons.delete,color: Colors.red,),
-                    label: Text('Delete Offer'))
+                Builder(
+                  builder:(context)=> Center(child: FlatButton.icon(
+                      onPressed: (){
+                        final userData = Provider.of<UserData>(context);
+                        if (userData!=null) {
+                          if ( userData.jobTitle == 'Manager') {
+                            showAlertDialog(context,offer.docid,offer.name);
+                          }else{
+                            final snackBar = SnackBar(
+                              content: Text('Not Authorized!'),
+                              action: SnackBarAction(
+                                label: 'ok',
+                                onPressed: () {},
+                              ),
+                            );
+                            Scaffold.of(context).showSnackBar(snackBar);
+                          }
+                        }
+                      },
+                      icon: Icon(Icons.delete,color: Colors.red,),
+                      label: Text('Delete Offer'))
+                  ),
                 )
               ],
             ),

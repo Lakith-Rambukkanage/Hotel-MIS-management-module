@@ -14,17 +14,13 @@ class _NormalRoomsListState extends State<NormalRoomsList> {
   @override
   Widget build(BuildContext context) {
     final roomList = Provider.of<List<RoomDetail>>(context);
-    //print(roomList);
     if (roomList!=null) {
+      List<RoomDetail>filter =roomList.where((r)=>(r.type=='Normal')).toList();
       return Expanded(
         child: ListView.builder(
-          itemCount: roomList.length,
+          itemCount: filter.length,
           itemBuilder: (context, index) {
-            if (roomList[index].type=='Normal') {
-              return RoomCard(room: roomList[index]);
-            }else{
-              return Container();
-            }
+              return RoomCard(room: filter[index]);
           },
         ),
       );

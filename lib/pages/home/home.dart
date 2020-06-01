@@ -1,14 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/custom_widgets/screen.dart';
 import 'package:flutter_learn/custom_widgets/todaypanel.dart';
+import 'package:flutter_learn/models/user.dart';
 import 'package:flutter_learn/pages/home/event_shedule.dart';
+import 'package:flutter_learn/shared/loading.dart';
+import 'package:provider/provider.dart';
 import 'viewsections.dart';
 import 'staff.dart';
 
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ReusableScreen(
+    final userData = Provider.of<UserData>(context);
+    bool enabled=false;
+    if(userData!=null){
+      if (userData.jobTitle=='Manager'){
+        enabled=true;
+      }
+      if(userData.jobTitle=='Senior Manager' && (userData.section=='Halls'||userData.section=='Hotel' )){
+        enabled=true;
+      }
+    }
+      return ReusableScreen(
       propic: 'dummypropic.png',
       appBarTitle: 'Dashboard',
       child: Column(
@@ -18,6 +31,7 @@ class Home extends StatelessWidget {
           Card(
             child: ListTile(
               contentPadding: EdgeInsets.all(10.0),
+              enabled: enabled,
               onTap:  (){
                 Navigator.push(context,new MaterialPageRoute(
                     builder: (context)=>

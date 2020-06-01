@@ -80,7 +80,7 @@ class Landing extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: Icon(Icons.warning),
                       ),
-                      title: Text('This Account Is not a valid staff account',style: TextStyle(color: Colors.red),),
+                      title: Text('This Account Is not a valid staff account',style: TextStyle(color: Colors.amber),),
                       subtitle: Text('Tap to Login with a valid account',),
                       onTap: ()async{
                         await _auth.signOut();

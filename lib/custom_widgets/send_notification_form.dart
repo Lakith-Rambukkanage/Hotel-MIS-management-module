@@ -23,12 +23,7 @@ class _SendNotificationFormState extends State<SendNotificationForm> {
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<User>(context);
-    return StreamBuilder<UserData>(
-        stream: DatabaseService(uid: user.uid).userData,
-        builder: (context, snapshot) {
-          if (snapshot.hasData){
-            return Scaffold(
+    return Scaffold(
               body: Container(
                 margin: EdgeInsets.all(10.0),
                 child: SingleChildScrollView(
@@ -78,10 +73,6 @@ class _SendNotificationFormState extends State<SendNotificationForm> {
                 ),
               ),
             );
-          }else{
-            return Loading();
-          }
-        });
   }
 }
 
@@ -98,12 +89,9 @@ class _SendBroadcastFormState extends State<SendBroadcastForm> {
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<User>(context);
-    return StreamBuilder<UserData>(
-        stream: DatabaseService(uid: user.uid).userData,
-        builder: (context, snapshot) {
-          if (snapshot.hasData){
-            return Scaffold(
+    final userData = Provider.of<UserData>(context);
+    String _senderName = (userData!=null)?'Broadcast - ${userData.name}':'Broadcast';
+    return Scaffold(
               body: Container(
                 margin: EdgeInsets.all(10.0),
                 child: SingleChildScrollView(
@@ -143,7 +131,7 @@ class _SendBroadcastFormState extends State<SendBroadcastForm> {
                               onPressed: () async {
                                 if (_formKey.currentState.validate()) {
                                   Navigator.pop(context);
-                                  await DatabaseService().sectionNotification(_message, 'Hotel');
+                                  await DatabaseService().sectionNotification(_message,_senderName);
                                 }
                               }),
                         ),
@@ -153,9 +141,5 @@ class _SendBroadcastFormState extends State<SendBroadcastForm> {
                 ),
               ),
             );
-          }else{
-            return Loading();
-          }
-        });
   }
 }

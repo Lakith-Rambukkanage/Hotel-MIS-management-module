@@ -25,24 +25,19 @@ class ReusableScreen extends StatelessWidget{
     //instance to access authservice
     final AuthService _auth = AuthService();
     //provider to access user
-    final user = Provider.of<User>(context);
-    if (user!=null){
-    return StreamBuilder<UserData>(
-      stream: DatabaseService(uid: user.uid??'').userData,
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          UserData userData = snapshot.data;
-          String username = userData.name;
-          String jobtitle = userData.jobTitle;
-          bool activestatus = userData.activeStatus;
-          return Scaffold(
+    final userData = Provider.of<UserData>(context);
+    if (userData!=null){
+      String username = userData.name??'';
+      String jobtitle = userData.jobTitle??'';
+      bool activestatus = userData.activeStatus??false;
+    return Scaffold(
             appBar: AppBar(
                 title: Text(appBarTitle),
                 actions: <Widget>[
                   Switch(
                     value: activestatus,
                     onChanged: (value) async{
-                      await DatabaseService(uid: user.uid).updateUserActiveStatus(value);
+                      await DatabaseService(uid: userData.uid).updateUserActiveStatus(value);
                     },
                     activeTrackColor: Colors.green[400],
                     activeColor: Colors.green,
@@ -174,12 +169,6 @@ class ReusableScreen extends StatelessWidget{
               ),
             ),
           );
-        }
-        else{
-          return LoadingScreen();
-        }
-      }
-    );
     }else{
       return LoadingScreen();
     }

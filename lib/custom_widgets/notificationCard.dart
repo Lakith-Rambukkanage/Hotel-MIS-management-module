@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/custom_widgets/send_notification_form.dart';
 import 'package:flutter_learn/models/notification.dart';
+import 'package:flutter_learn/models/user.dart';
 import 'package:flutter_learn/services/database.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class NotificationCard extends StatefulWidget {
   final NotificationModel notification;
@@ -183,21 +185,37 @@ class _NotificationCardSectionState extends State<NotificationCardSection> {
   @override
   Widget build(BuildContext context) {
     NotificationModel notification = widget.notification;
-    String senderName = notification.senderName;
-    DateTime sentDate = notification.sentDate;
+    String senderName = notification.senderName??'';
+    DateTime sentDate = notification.sentDate??'';
     var formatter = new DateFormat('yyyy-MM-dd');
     String formattedDate = formatter.format(sentDate);
     String recName = notification.recName;
     String notificationContext = notification.body;
     Color c = Colors.grey;
-    IconData readIcon = Icons.query_builder;
+    IconData icon = Icons.query_builder;
 
     if (notification.read){
       c = Colors.blue;
-      readIcon = Icons.done_all;
+      icon = Icons.done_all;
     }else{
       c = Colors.grey;
-      readIcon = Icons.query_builder;
+      icon = Icons.query_builder;
+    }
+    switch(senderName){
+      case 'Hotel':
+        icon = Icons.home;
+        break;
+      case 'Halls':
+        icon = Icons.business;
+        break;
+      case 'Rooms':
+        icon = Icons.hotel;
+        break;
+      case 'Restaurant':
+        icon = Icons.restaurant;
+        break;
+      default:
+        icon = Icons.query_builder;
     }
     return Center(
       child: Card(
@@ -210,16 +228,30 @@ class _NotificationCardSectionState extends State<NotificationCardSection> {
                 contentPadding: EdgeInsets.all(10.0),
                 trailing: IconButton(icon: Icon(Icons.delete),color: Colors.red,
                   onPressed :() async{
-                    try {
-                      await DatabaseService().softDelete(notification.docid);
-                    } catch (e) {
-                      print('e.toString()');
-                      print(e.toString());
+                    final userData = Provider.of<UserData>(context);
+                    if (userData!=null) {
+                      if (userData.jobTitle == 'Manager' ) {
+                        try {
+                          await DatabaseService().softDelete(notification.docid);
+                        } catch (e) {
+                          print('e.toString()');
+                          print(e.toString());
+                        }
+                      }else{
+                        final snackBar = SnackBar(
+                          content: Text('Not Authorized!'),
+                          action: SnackBarAction(
+                            label: 'ok',
+                            onPressed: () {},
+                          ),
+                        );
+                        Scaffold.of(context).showSnackBar(snackBar);
+                      }
                     }
                   },),
                 subtitle: Text('Section : $senderName\n$formattedDate'),
                 title: Text('$notificationContext'),
-                leading: Icon(readIcon,color:c,),
+                leading: Icon(icon,color:c,),
               ),
             ],
           ),

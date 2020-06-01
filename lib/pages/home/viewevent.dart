@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/custom_widgets/screen.dart';
 import 'package:flutter_learn/models/event.dart';
+import 'package:flutter_learn/models/user.dart';
 import 'package:flutter_learn/pages/home/event_reschedule.dart';
 import 'package:flutter_learn/services/database.dart';
 import 'package:flutter_learn/shared/loading.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class ViewEvent extends StatelessWidget {
   final String docid;
@@ -88,16 +90,48 @@ class ViewEvent extends StatelessWidget {
                         icon: Icon(Icons.event, color: Colors.cyan,),
                           label: Text('Reschedule'),
                         onPressed: (){
-                          Navigator.push(context,new MaterialPageRoute(
-                              builder: (context)=>
-                              new RescheduleEvent(docid: docid,eventName: e.eventName,))
-                          );
+                          final userData = Provider.of<UserData>(context);
+                          if (userData!=null) {
+                            if ((userData.jobTitle=='Senior Manager' ||userData.jobTitle=='Manager')&& (userData.section=='Halls'||userData.section=='Hotel' )) {
+                              Navigator.push(context, new MaterialPageRoute(
+                                  builder: (context) =>
+                                  new RescheduleEvent(
+                                    docid: docid, eventName: e.eventName,))
+                              );
+                            }
+                            else{
+                              final snackBar = SnackBar(
+                                content: Text('Not Authorized!'),
+                                action: SnackBarAction(
+                                  label: 'ok',
+                                  onPressed: () {},
+                                ),
+                              );
+                              Scaffold.of(context).showSnackBar(snackBar);
+                            }
+                          }
                         },
                       ),
                       FlatButton.icon(
                           icon: Icon(Icons.delete, color: Colors.red,),
                           label: Text('Delete',),
-                          onPressed: ()=>showAlertDialog(context,docid,e.eventName,),
+                          onPressed: (){
+                            final userData = Provider.of<UserData>(context);
+                            if (userData!=null) {
+                              if (userData.jobTitle == 'Manager') {
+                                showAlertDialog(context, docid, e.eventName,);
+                              }else{
+                                final snackBar = SnackBar(
+                                  content: Text('Not Authorized!'),
+                                  action: SnackBarAction(
+                                    label: 'ok',
+                                    onPressed: () {},
+                                  ),
+                                );
+                                Scaffold.of(context).showSnackBar(snackBar);
+                              }
+                            }
+                          },
                       ),
                     ],
                   ),

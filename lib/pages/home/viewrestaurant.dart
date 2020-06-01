@@ -4,6 +4,7 @@ import 'package:flutter_learn/custom_widgets/order_list_panel.dart';
 import 'package:flutter_learn/custom_widgets/screen.dart';
 import 'package:flutter_learn/custom_widgets/table_list_panel.dart';
 import 'package:flutter_learn/models/restaurentmodels.dart';
+import 'package:flutter_learn/models/user.dart';
 import 'package:flutter_learn/pages/home/addofferitems.dart';
 import 'package:flutter_learn/services/database.dart';
 import 'package:flutter_learn/shared/loading.dart';
@@ -36,10 +37,29 @@ class ViewRestaurant extends StatelessWidget {
                                   icon : Icon(Icons.fastfood,color: Colors.green,),
                                   label:Text('Add Offer +'),
                                   onPressed: (){
-                                    Navigator.push(context,new MaterialPageRoute(
-                                        builder: (context)=>
-                                        new AddOfferItems())
-                                    );
+                                  final userData = Provider.of<UserData>(context);
+                                  if (userData!=null) {
+                                    if ((userData.jobTitle ==
+                                        'Senior Manager' ||
+                                        userData.jobTitle == 'Manager') &&
+                                        (userData.section == 'Restaurant' ||
+                                            userData.section == 'Hotel')) {
+                                      Navigator.push(
+                                          context, new MaterialPageRoute(
+                                          builder: (context) =>
+                                          new AddOfferItems())
+                                      );
+                                    }else{
+                                      final snackBar = SnackBar(
+                                        content: Text('Not Authorized!'),
+                                        action: SnackBarAction(
+                                          label: 'ok',
+                                          onPressed: () {},
+                                        ),
+                                      );
+                                      Scaffold.of(context).showSnackBar(snackBar);
+                                    }
+                                  }
                                   },
                                 ),
                               ),

@@ -22,20 +22,15 @@ class Profile extends StatelessWidget {
       });
     }
 
-    final user = Provider.of<User>(context);
+    final user = Provider.of<UserData>(context);
     if (user!=null){
-    return StreamBuilder<UserData>(
-      stream: DatabaseService(uid: user.uid).userData,
-      builder: (context, snapshot) {
-      if (snapshot.hasData) {
-        UserData userData = snapshot.data;
-        String username = userData.name;
-        String jobtitle = userData.jobTitle;
-        bool activestatus = userData.activeStatus;
-        String email = userData.email;
-        String section = userData.section;
-        String mobileNo = userData.mobileNo;
-        return ReusableScreen(
+      String username = user.name??'';
+      String jobtitle = user.jobTitle??'';
+      bool activeStatus = user.activeStatus??false;
+      String email = user.email??'';
+      String section = user.section??'';
+      String mobileNo = user.mobileNo??'';
+    return ReusableScreen(
           appBarTitle: 'My Profile',
           propic: 'dummypropic.png',
             child: Column(
@@ -69,7 +64,7 @@ class Profile extends StatelessWidget {
                                     children: <Widget>[
                                       Text('Status :', style: TextStyle(color: Colors.black, fontSize: 17.0)),
                                       Switch(
-                                        value: activestatus,
+                                        value: activeStatus,
                                         onChanged: (value) async{
                                           await DatabaseService(uid: user.uid).updateUserActiveStatus(value);
                                         },
@@ -112,13 +107,7 @@ class Profile extends StatelessWidget {
                     ),
           ],
           )
-        );}
-      else{
-        print('Loading');
-        return LoadingScreen();
-      }
-      }
-    );
+        );
     }else{
       return LoadingScreen();
     }
