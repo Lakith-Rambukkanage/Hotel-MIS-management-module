@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/services/auth.dart';
+import 'package:flutter_learn/shared/validators.dart';
 
 class SignIn extends StatefulWidget {
   final Function toggleView;
@@ -59,7 +60,7 @@ class _SignInState extends State<SignIn> {
                       child: Column(
                       children: <Widget>[
                         TextFormField(
-                          validator: (val) =>val.isEmpty? 'Enter Your Email':null,
+                          validator: EmailFieldValidator.validate,
                           onChanged: (val){
                             setState( () => email = val );
                             //print(email);
@@ -74,7 +75,7 @@ class _SignInState extends State<SignIn> {
                         ),
                         SizedBox(height: 10.0,),
                         TextFormField(
-                          validator: (val) =>val.isEmpty? 'Enter Your Password':null,
+                          validator: PasswordFieldValidator.validate,
                           onChanged: (val){
                             setState( () => password = val);
                             //print(password);

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_learn/services/auth.dart';
+import 'package:flutter_learn/shared/validators.dart';
 
 class Register extends StatefulWidget {
   final Function toggleView;
@@ -60,7 +61,7 @@ class _RegisterState extends State<Register> {
                       child: Column(
                       children: <Widget>[
                         TextFormField(
-                          validator: (val) =>val.isEmpty? 'Enter Your Name':null,
+                          validator: NameFieldValidator.validate,
                           onChanged: (val){
                             setState( () => name = val );
                           },
@@ -74,7 +75,7 @@ class _RegisterState extends State<Register> {
                         ),
                         SizedBox(height: 10.0,),
                         TextFormField(
-                          validator: (val) => val.isEmpty? 'Enter Your Email':null,
+                          validator: EmailFieldValidator.validate,
                           onChanged: (val){
                             setState( () => email = val );
                           },
@@ -92,7 +93,7 @@ class _RegisterState extends State<Register> {
                             onChanged:(val){
                               setState( () => mobileNo = val );
                             },
-                            validator: (val) => val.length!=10? 'Enter valid Contact No':null,
+                            validator: ContactFieldValidator.validate,
                             keyboardType: TextInputType.number,
                             inputFormatters: <TextInputFormatter>[
                               WhitelistingTextInputFormatter.digitsOnly
@@ -108,7 +109,7 @@ class _RegisterState extends State<Register> {
                         SizedBox(height: 10.0,),
                         DropdownButtonFormField(
                           value: jobTitle,
-                          validator: (val) =>val=='Select Job Title'? 'Enter Your Job Title':null,
+                          validator: (val) =>val==null? 'Enter Your Job Title':null,
                           isDense: true,
                           decoration: const InputDecoration(
                             border: UnderlineInputBorder(),
@@ -130,7 +131,7 @@ class _RegisterState extends State<Register> {
                         ),
                         SizedBox(height: 10.0,),
                         TextFormField(
-                          validator: (val) =>val.isEmpty? 'Enter a Password For Your Account':null,
+                          validator: PasswordFieldValidator.validate,
                           onChanged: (val){
                             setState( () => password = val );
                           },
@@ -148,7 +149,6 @@ class _RegisterState extends State<Register> {
                           child: Text('Register', style: TextStyle(color: Colors.white),),
                           color: Colors.cyan.withOpacity(0.7),
                           onPressed: () async {
-                            print ('Register clicked');
                             if (_formkey.currentState.validate()){
                               dynamic result = await _authService.registerNewUser(email,mobileNo, password,name,jobTitle);
                               if (result==null){
