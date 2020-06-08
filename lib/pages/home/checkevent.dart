@@ -90,7 +90,6 @@ class CheckEvent extends StatelessWidget {
                               onPressed: (){}, 
                               icon: Icon(Icons.table_chart, color: Colors.blue,),
                               label: Text('Hall Prep'),
-                              //TODO : functions availablity according to user
                             ),
                           ],
                         ),

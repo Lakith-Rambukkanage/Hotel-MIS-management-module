@@ -383,7 +383,7 @@ class DatabaseService {
   }
   //to get events list snapshots upcoming
   Stream<List<EventModel>> getUpcomingEventsList(){
-    DateTime beforeDate= DateTime.now().subtract(Duration(days: 2));//todo:check greater than add and subtract and check for yesterday today and tom
+    DateTime beforeDate= DateTime.now().subtract(Duration(days: 2));
     DateTime afterDate= DateTime.now().add(Duration(days: 1));//
     return eventsCollection.where('eventDate', isGreaterThanOrEqualTo: Timestamp.fromDate(beforeDate)).where('eventDate', isLessThanOrEqualTo: Timestamp.fromDate(afterDate)).snapshots().map(_eventsListFromSnapshot);
   }

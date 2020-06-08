@@ -158,7 +158,7 @@ class Sections extends StatelessWidget {
                 );
               },
             ),
-          ), // TODO : in each section show updates from manager etc. // TODO : allow broadcast to all employees within section // TODO : add halls
+          ),
         ],
     )
     );

@@ -18,8 +18,8 @@ class OfferCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    List items = this.offer.items;
-    String docid = this.offer.docid;
+    //List items = this.offer.items;
+    //String docid = this.offer.docid;
     String name = this.offer.name;
     int price = this.offer.price;
     int sold = this.offer.sold;

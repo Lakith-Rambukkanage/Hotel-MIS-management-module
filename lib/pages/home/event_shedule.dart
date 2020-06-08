@@ -53,8 +53,8 @@ class _SheduleEventState extends State<SheduleEvent> {
               7 : 'Available',//up to here west night
               };
               List<EventModel> eventsList = snapshot.data;
-              List<EventModel> eastHallEventsList = eventsList.where((e)=>(e.hall=='East Hall')).toList();
-              List<EventModel> westHallEventsList = eventsList.where((e)=>(e.hall=='West Hall')).toList();
+//              List<EventModel> eastHallEventsList = eventsList.where((e)=>(e.hall=='East Hall')).toList();
+//              List<EventModel> westHallEventsList = eventsList.where((e)=>(e.hall=='West Hall')).toList();
               for (EventModel e in eventsList){
                 if (e.hall=='East Hall'){
                   availability[e.timeSlot]=e.eventName;

@@ -42,7 +42,6 @@ class ViewStaff extends StatelessWidget {
             ),
           ),
         SizedBox(height: 20.0,),
-        //TODO: On tap do the following
         Card(
             child: ListTile(
                 contentPadding: EdgeInsets.all(10.0),

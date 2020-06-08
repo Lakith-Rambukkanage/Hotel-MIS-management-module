@@ -29,7 +29,7 @@ class EmployeeCardDisabled extends StatelessWidget {
       click=false;
     }
     String jobTitle = this.staffMember.jobTitle;
-    String section = this.staffMember.section;
+    //String section = this.staffMember.section;
     String email = this.staffMember.email;
     String mobileNo = this.staffMember.mobileNo;
     bool activeStatus = this.staffMember.activeStatus;
@@ -123,7 +123,7 @@ class EmployeeCardDisabled extends StatelessWidget {
         Center(child: restaurantButton),
         Center(child: roomsButton),
         Center(child: hallsButton),
-        Center(child: hotelButton),//Todo: delete button
+        Center(child: hotelButton),
       ],
     );
 

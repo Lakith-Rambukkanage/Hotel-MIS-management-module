@@ -10,10 +10,8 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-  //const job titles TODO: change accordingly
   final List<String> jobTitleList = ['Senior Manager','Assistant Manager'];
 
-  //text field state TODO: change input fields
   String name = '';
   String email = '';
   String mobileNo = '';

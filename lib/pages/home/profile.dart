@@ -86,20 +86,12 @@ class Profile extends StatelessWidget {
                               padding: const EdgeInsets.all(8.0),
                               child: Text('Mobile No. :$mobileNo', style: TextStyle(color: Colors.black, fontSize: 17.0)),
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                FlatButton.icon(
-                                  onPressed: ()=>_showEditPanel(),
-                                  icon: Icon(Icons.edit,color: Colors.blue,),
-                                  label: Text('Edit details'),
-                                ),
-                                FlatButton.icon(
-                                  onPressed: (){},
-                                  icon: Icon(Icons.remove_circle,color: Colors.red,),
-                                  label: Text('deactivate'),
-                                ),
-                              ],
+                            Center(
+                              child: FlatButton.icon(
+                                onPressed: ()=>_showEditPanel(),
+                                icon: Icon(Icons.edit,color: Colors.blue,),
+                                label: Text('Edit details'),
+                              ),
                             )
                           ],
                         ),

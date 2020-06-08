@@ -72,11 +72,11 @@ class ItemTile extends StatelessWidget {
   Widget build(BuildContext context) {
     Item item =this.item;
     String name = item.name;
-    String docid = item.docid;
-    bool available = item.available;
+    //String docid = item.docid;
+    //bool available = item.available;
     int price = item.price;
     int quantity = item.quantity;
-    int persons = item.persons;
+    //int persons = item.persons;
     String category = item.category;
     String image = item.image??'';
 

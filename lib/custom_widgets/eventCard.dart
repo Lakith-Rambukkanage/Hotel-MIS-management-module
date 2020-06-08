@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/models/event.dart';
-import 'package:flutter_learn/pages/home/checkevent.dart';
 import 'package:flutter_learn/pages/home/viewevent.dart';
 
 class EventCard extends StatelessWidget {

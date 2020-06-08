@@ -1,14 +1,13 @@
-//todo: remove test
+
 import 'package:flutter/material.dart';
 import 'package:flutter_learn/custom_widgets/screen.dart';
 import 'package:flutter_learn/models/event.dart';
 import 'package:flutter_learn/pages/home/viewevent.dart';
 import 'package:flutter_learn/services/database.dart';
-import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-// Example holidays ///todo:
+// Example holidays
 final Map<DateTime, List> _holidays = {
   DateTime(2021, 1, 1): ['New Year\'s Day'],
   DateTime(2020, 6, 6): ['Epiphany'],

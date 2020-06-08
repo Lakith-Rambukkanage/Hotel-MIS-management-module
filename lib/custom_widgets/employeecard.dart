@@ -21,9 +21,11 @@ class EmployeeCard extends StatelessWidget {
     String name = this.staffMember.name;
     String uid = this.staffMember.uid;
     bool click = true;
-    if (uid==user.uid){
-      name = 'You';
-      click=false;
+    if (user!=null){
+        if (uid==user.uid){
+        name = 'You';
+        click=false;
+      }
     }
     String jobTitle = this.staffMember.jobTitle;
     String section = this.staffMember.section;

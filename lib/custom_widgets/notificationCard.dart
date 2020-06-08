@@ -25,7 +25,7 @@ class _NotificationCardState extends State<NotificationCard> {
     var formatter = new DateFormat('yyyy-MM-dd');
     String formattedDate = formatter.format(sentDate);
     String notificationContext = notification.body;
-    Icon sectionIcon = Icon(Icons.perm_identity);//TODO :change icon for section of the sender
+    //Icon sectionIcon = Icon(Icons.perm_identity);
 
     return Center(
       child: Card(
@@ -122,7 +122,7 @@ class _NotificationCardSentState extends State<NotificationCardSent> {
   @override
   Widget build(BuildContext context) {
     NotificationModel notification = widget.notification;
-    String senderName = notification.senderName;
+    //String senderName = notification.senderName;
     DateTime sentDate = notification.sentDate;
     var formatter = new DateFormat('yyyy-MM-dd');
     String formattedDate = formatter.format(sentDate);
@@ -189,7 +189,7 @@ class _NotificationCardSectionState extends State<NotificationCardSection> {
     DateTime sentDate = notification.sentDate??'';
     var formatter = new DateFormat('yyyy-MM-dd');
     String formattedDate = formatter.format(sentDate);
-    String recName = notification.recName;
+    //String recName = notification.recName;
     String notificationContext = notification.body;
     Color c = Colors.grey;
     IconData icon = Icons.query_builder;

@@ -3,7 +3,6 @@ import 'package:flutter_learn/custom_widgets/screen.dart';
 import 'package:flutter_learn/custom_widgets/todaypanel.dart';
 import 'package:flutter_learn/models/user.dart';
 import 'package:flutter_learn/pages/home/event_shedule.dart';
-import 'package:flutter_learn/shared/loading.dart';
 import 'package:provider/provider.dart';
 import 'viewsections.dart';
 import 'staff.dart';
