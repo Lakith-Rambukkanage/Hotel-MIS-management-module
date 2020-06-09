@@ -60,6 +60,7 @@ class _SignInState extends State<SignIn> {
                       child: Column(
                       children: <Widget>[
                         TextFormField(
+                          key: Key('email'),
                           validator: EmailFieldValidator.validate,
                           onChanged: (val){
                             setState( () => email = val );
@@ -75,6 +76,7 @@ class _SignInState extends State<SignIn> {
                         ),
                         SizedBox(height: 10.0,),
                         TextFormField(
+                          key: Key('password'),
                           validator: PasswordFieldValidator.validate,
                           onChanged: (val){
                             setState( () => password = val);
@@ -91,6 +93,7 @@ class _SignInState extends State<SignIn> {
                         ),
                         SizedBox(height: 15.0,),
                         RaisedButton(
+                          key: Key('login'),
                           child: Text('Login', style: TextStyle(color: Colors.white),),
                           color: Colors.cyan.withOpacity(0.7),
                           onPressed: () async {
@@ -105,7 +108,9 @@ class _SignInState extends State<SignIn> {
                           ),
                         SizedBox(height: 5.0,),
                         Text(error,textAlign: TextAlign.center, style: TextStyle(color: Colors.red),),
-                        FlatButton(onPressed: () {
+                        FlatButton(
+                          key: Key('toggle'),
+                          onPressed: () {
                           widget.toggleView();
                         },
                           child:Text('Don\'t have an account? Register here',

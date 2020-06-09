@@ -73,6 +73,7 @@ class _FinalizeOfferState extends State<FinalizeOffer> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   TextFormField(
+                    key: Key('offer-name'),
                     validator: (val) =>val.isEmpty? 'Enter Offer Name':null,
                     onChanged: (val){
                       setState( () => name = val );
@@ -101,6 +102,7 @@ class _FinalizeOfferState extends State<FinalizeOffer> {
                   SizedBox(height: 10.0,),
                   Container(height: 2.0,color: Colors.grey[400],),
                   TextFormField(
+                      key: Key('price'),
                       //controller: _controller,
                       onChanged:(val){
                         setState( () => price = int.parse(val) );
@@ -141,6 +143,7 @@ class _FinalizeOfferState extends State<FinalizeOffer> {
                           }
                       ),
                       RaisedButton(
+                        key: Key('add-button'),
                           child: Text('Add Offer', style: TextStyle(color: Colors.white),),
                           color: Colors.cyan.withOpacity(0.7),
                           onPressed: () async {

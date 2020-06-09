@@ -32,6 +32,7 @@ class _EditProfileState extends State<EditProfile> {
                               fontSize: 20.0),),
                           SizedBox(height: 10.0,),
                           TextFormField(
+                            key: Key('name'),
                             initialValue: _currentName ?? user.name,
                             validator: (val) =>
                             val.isEmpty
@@ -52,7 +53,8 @@ class _EditProfileState extends State<EditProfile> {
                           ),
                           SizedBox(height: 10.0,),
                           TextFormField(
-                            //controller: _controller,
+                              key: Key('contact'),
+                              //controller: _controller,
                             initialValue: _currentMobileNo??user.mobileNo,
                               onChanged:(val){
                                 setState( () => _currentMobileNo = val );
@@ -80,6 +82,7 @@ class _EditProfileState extends State<EditProfile> {
                               ),
                               color: Colors.cyan,
                               onPressed: () async {
+                                Navigator.pop(context);
                                 if (_formKey.currentState.validate()) {
                                   await DatabaseService(uid: user.uid)
                                       .editUserData(
@@ -88,7 +91,6 @@ class _EditProfileState extends State<EditProfile> {
                                       mobileNo: _currentMobileNo ??
                                           user.mobileNo);
                                 }
-                                Navigator.pop(context);
                               }),
                         ],
                       ),

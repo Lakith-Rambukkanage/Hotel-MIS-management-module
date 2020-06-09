@@ -61,6 +61,7 @@ class _RegisterState extends State<Register> {
                       child: Column(
                       children: <Widget>[
                         TextFormField(
+                          key: Key('name'),
                           validator: NameFieldValidator.validate,
                           onChanged: (val){
                             setState( () => name = val );
@@ -75,6 +76,7 @@ class _RegisterState extends State<Register> {
                         ),
                         SizedBox(height: 10.0,),
                         TextFormField(
+                          key: Key('email'),
                           validator: EmailFieldValidator.validate,
                           onChanged: (val){
                             setState( () => email = val );
@@ -89,7 +91,8 @@ class _RegisterState extends State<Register> {
                         ),
                         SizedBox(height: 10.0,),
                         TextFormField(
-                          //controller: _controller,
+                            key: Key('contact'),
+                            //controller: _controller,
                             onChanged:(val){
                               setState( () => mobileNo = val );
                             },
@@ -108,6 +111,7 @@ class _RegisterState extends State<Register> {
                         ),
                         SizedBox(height: 10.0,),
                         DropdownButtonFormField(
+                          key: Key('jobTitle'),
                           value: jobTitle,
                           validator: (val) =>val==null? 'Enter Your Job Title':null,
                           isDense: true,
@@ -131,6 +135,7 @@ class _RegisterState extends State<Register> {
                         ),
                         SizedBox(height: 10.0,),
                         TextFormField(
+                          key: Key('password'),
                           validator: PasswordFieldValidator.validate,
                           onChanged: (val){
                             setState( () => password = val );
@@ -146,9 +151,11 @@ class _RegisterState extends State<Register> {
                         ),
                         SizedBox(height: 15.0,),
                         RaisedButton(
+                          key: Key('register-button'),
                           child: Text('Register', style: TextStyle(color: Colors.white),),
                           color: Colors.cyan.withOpacity(0.7),
                           onPressed: () async {
+                            print ('register clicked');
                             if (_formkey.currentState.validate()){
                               dynamic result = await _authService.registerNewUser(email,mobileNo, password,name,jobTitle);
                               if (result==null){
@@ -163,7 +170,9 @@ class _RegisterState extends State<Register> {
                     ),
                   ),
                 ),
-                FlatButton(onPressed: () {
+                FlatButton(
+                  key: Key('toggle'),
+                  onPressed: () {
                   widget.toggleView();
                 },
                 child:Text('Already Have an Account?',

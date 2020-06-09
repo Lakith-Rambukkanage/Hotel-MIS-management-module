@@ -45,7 +45,7 @@ class PackageCard extends StatelessWidget {
             if ((userData.jobTitle ==
                 'Senior Manager' ||
                 userData.jobTitle == 'Manager') &&
-                (userData.section == 'Restaurant' ||
+                (userData.section == 'Rooms' ||
                     userData.section == 'Hotel')) {
               _updateRoomPackages(docid: docid);
             }else{
