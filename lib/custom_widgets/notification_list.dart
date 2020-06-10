@@ -20,7 +20,6 @@ class _NotificationListState extends State<NotificationList> {
       List<NotificationModel> recList = validList.where((n)=>(!n.read)).toList();
       recList.sort((n1,n2)=>(n2.sentDate.compareTo(n1.sentDate)));
       if (recList.isNotEmpty){return Container(
-        height: 200.0,
         child: Column(
           children: <Widget>[
             Expanded(
@@ -63,7 +62,6 @@ class _NotificationListSentState extends State<NotificationListSent> {
       List<NotificationModel> sentList = notificationList.where((n)=>(n.senderID==user.uid)).toList();
       sentList.sort((n1,n2)=>(n2.sentDate.compareTo(n1.sentDate)));
       if (sentList.isNotEmpty){return Container(
-        height: 200.0,
         child: Column(
           children: <Widget>[
             Expanded(
@@ -106,7 +104,6 @@ class _NotificationListSectionState extends State<NotificationListSection> {
       List<NotificationModel> sectionList = notificationList.where((n)=>(n.senderID=='section')).toList();
       sectionList.sort((n1,n2)=>(n2.sentDate.compareTo(n1.sentDate)));
       if (sectionList.isNotEmpty){return Container(
-        height: 200.0,
         child: Column(
           children: <Widget>[
             Expanded(

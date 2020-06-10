@@ -20,6 +20,7 @@ void main() => runApp(RootApp());
 class RootApp extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
+    //Root application wrapped with Firebase auth stream provider
         return Container(
           child: StreamProvider<User>.value(
           value: AuthService().user,
@@ -40,6 +41,7 @@ class _BypassState extends State<Bypass> {
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
     String uid = (user!=null)?user.uid:'fill';
+    //Custom user stream
     return StreamProvider<UserData>.value(
       value: DatabaseService(uid:uid).userData,
       child: MaterialApp(

@@ -29,7 +29,7 @@ class _ItemCardState extends State<ItemCard> {
         stat = Colors.white;
         break;
       default:
-        stat = Colors.green;
+        stat = Colors.green[300];
     }
     return Card(
       color: stat,
