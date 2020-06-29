@@ -22,7 +22,7 @@ class Home extends StatelessWidget {
     }
       return ReusableScreen(
       propic: 'dummypropic.png',
-      appBarTitle: 'Dashboard',
+      appBarTitle: 'Home',
       child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
         children :<Widget>[

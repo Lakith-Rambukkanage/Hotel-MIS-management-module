@@ -35,6 +35,8 @@ class _RegisterState extends State<Register> {
         backgroundColor: Colors.grey[900],
         resizeToAvoidBottomPadding: false,
         body: Container(
+          height: double.infinity,
+          width: double.infinity,
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/background2.jpg"),

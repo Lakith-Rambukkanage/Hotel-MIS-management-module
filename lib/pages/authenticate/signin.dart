@@ -30,6 +30,9 @@ class _SignInState extends State<SignIn> {
         backgroundColor: Colors.grey[900],
         resizeToAvoidBottomPadding: false,
         body: Container(
+          //fit: BoxFit.cover,
+          height: double.infinity,
+          width: double.infinity,
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/background2.jpg"),
