@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_learn/custom_widgets/hometile.dart';
 
 class RoomPanel extends StatelessWidget {
   final int available;
@@ -18,7 +17,7 @@ class RoomPanel extends StatelessWidget {
     double availableheight = 20 + 65*available/total;
     double cleaningheight = 20 + 65*cleaning/total;
     double checkedheight = 20 + 65*checked/total;
-    return HomeTile(
+    return Column(
         children : <Widget>[Container(
         height: 170.0,
         width: 170.0,
@@ -31,7 +30,7 @@ class RoomPanel extends StatelessWidget {
                 padding: const EdgeInsets.all(2.0),
                 child: Text('Rooms', style: TextStyle(color: Colors.white, fontSize: 18.0)),
               ),
-              Container(width: 150.0,height: availableheight, decoration:BoxDecoration(color: Colors.white,borderRadius: BorderRadius.vertical(top:Radius.circular(20) )), 
+              Container(width: 150.0,height: availableheight, decoration:BoxDecoration(color: Colors.white),
                 child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -46,7 +45,7 @@ class RoomPanel extends StatelessWidget {
                   Text(' cleaning - $cleaning'),
                 ],
               ),),
-              Container(width: 150.0,height: checkedheight,decoration:BoxDecoration(color: Colors.blue,borderRadius: BorderRadius.vertical(bottom:Radius.circular(20) )), 
+              Container(width: 150.0,height: checkedheight,decoration:BoxDecoration(color: Colors.blue),
                 child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
